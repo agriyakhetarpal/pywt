@@ -601,8 +601,8 @@ are in hertz. Otherwise, a sampling period of 1 is assumed.</p>
 <p>Size of coefficients arrays depends on the length of the input array and
 the length of given scales.</p>
 <p class="rubric">Examples</p>
-<div class="try_examples_outer_container docutils container" id="806c414e-11bb-42e2-b2dc-4722a11e5c19">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('806c414e-11bb-42e2-b2dc-4722a11e5c19','83b61376-b982-4b86-90f4-6740627f36ae','c5d5d5f3-dee0-4514-bd2c-18763cce83ff','../lite/tree/../notebooks/?path=485686a1_3eab_4816_a351_cb96d7d001fb.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="7325afae-925d-48ee-9caa-b37a17ba092a">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('7325afae-925d-48ee-9caa-b37a17ba092a','d0693bd0-3864-427c-a325-057162888673','bbac1eeb-bfb9-48e1-ad36-65d5ec4375c3','../lite/tree/../notebooks/?path=a920211d_f842_4ce2_92eb_234a19cc6c97.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -627,7 +627,7 @@ the length of given scales.</p>
 </div>
 </div>
 </div>
-<div id="c5d5d5f3-dee0-4514-bd2c-18763cce83ff" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('806c414e-11bb-42e2-b2dc-4722a11e5c19','c5d5d5f3-dee0-4514-bd2c-18763cce83ff')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('806c414e-11bb-42e2-b2dc-4722a11e5c19','c5d5d5f3-dee0-4514-bd2c-18763cce83ff')">Open In Tab</button></div><div id="83b61376-b982-4b86-90f4-6740627f36ae" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+<div id="bbac1eeb-bfb9-48e1-ad36-65d5ec4375c3" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('7325afae-925d-48ee-9caa-b37a17ba092a','bbac1eeb-bfb9-48e1-ad36-65d5ec4375c3')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('7325afae-925d-48ee-9caa-b37a17ba092a','bbac1eeb-bfb9-48e1-ad36-65d5ec4375c3')">Open In Tab</button></div><div id="d0693bd0-3864-427c-a325-057162888673" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
 
 </section>
 <section id="a-comprehensive-example-of-the-cwt">
@@ -805,15 +805,15 @@ resolution or artifacts.</p>
 <h2>Continuous Wavelet Families<a class="headerlink" href="#continuous-wavelet-families" title="Permalink to this heading">#</a></h2>
 <p>A variety of continuous wavelets have been implemented. A list of the available
 wavelet names compatible with <code class="docutils literal notranslate"><span class="pre">cwt</span></code> can be obtained by:</p>
-<div class="try_examples_outer_container docutils container" id="d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0','91edbbf3-d00d-4a9e-a79a-df090a8d301c','3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8','../lite/tree/../notebooks/?path=8a8af226_60a3_4514_a973_0ff15ec4070c.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="89c8413f-2052-4704-8887-3e46b014d4f6">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('89c8413f-2052-4704-8887-3e46b014d4f6','30355a21-f257-4b45-8f1a-3ab14b1a4727','86b37cb8-820e-481e-a8c5-023e325a5f81','../lite/tree/../notebooks/?path=773eb1b2_20cd_4a36_9de9_5bbaa2a8f86b.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wavelist</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">wavelist</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div id="3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0','3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0','3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8')">Open In Tab</button></div><div id="91edbbf3-d00d-4a9e-a79a-df090a8d301c" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>Here is an overview of all available wavelets for <code class="docutils literal notranslate"><span class="pre">cwt</span></code>. Note, that they can be
+<div id="86b37cb8-820e-481e-a8c5-023e325a5f81" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('89c8413f-2052-4704-8887-3e46b014d4f6','86b37cb8-820e-481e-a8c5-023e325a5f81')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('89c8413f-2052-4704-8887-3e46b014d4f6','86b37cb8-820e-481e-a8c5-023e325a5f81')">Open In Tab</button></div><div id="30355a21-f257-4b45-8f1a-3ab14b1a4727" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>Here is an overview of all available wavelets for <code class="docutils literal notranslate"><span class="pre">cwt</span></code>. Note, that they can be
 customized by passing parameters such as <code class="docutils literal notranslate"><span class="pre">center_frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">bandwidth_frequency</span></code>
 (see <a class="reference internal" href="wavelets.html#continuouswavelet"><span class="std std-ref">ContinuousWavelet object</span></a> for details).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -930,8 +930,8 @@ where dt is the sampling period. In other words, when analyzing a signal
 sampled at 100 Hz, a center frequency of 1.0 corresponds to ~100 Hz at
 <code class="docutils literal notranslate"><span class="pre">scale</span> <span class="pre">=</span> <span class="pre">1</span></code>. This is above the Nyquist rate of 50 Hz, so for this
 particular wavelet, one would analyze a signal using <code class="docutils literal notranslate"><span class="pre">scales</span> <span class="pre">&gt;=</span> <span class="pre">2</span></code>.</p>
-<div class="try_examples_outer_container docutils container" id="0e850694-b20c-4b28-8c91-67fd7b1286a9">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('0e850694-b20c-4b28-8c91-67fd7b1286a9','d118a0e5-9c21-4b41-a5aa-e669bd538997','b2af7f85-7276-4701-b802-acf016d3d123','../lite/tree/../notebooks/?path=916e1cd0_c408_4c7f_a793_0bb5d6119cbd.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="91b6be24-a2bb-458e-bc9a-e66bb4083236">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('91b6be24-a2bb-458e-bc9a-e66bb4083236','5b2c4a75-5eeb-4fa4-9a1e-6f77908d4998','5c72df9a-5685-44ad-aa29-92e62cc5e1d4','../lite/tree/../notebooks/?path=c4d414f9_d2bd_4a50_b97c_749089fe25e6.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 100 Hz sampling</span>
@@ -942,7 +942,7 @@ particular wavelet, one would analyze a signal using <code class="docutils liter
 </div>
 </div>
 </div>
-<div id="b2af7f85-7276-4701-b802-acf016d3d123" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('0e850694-b20c-4b28-8c91-67fd7b1286a9','b2af7f85-7276-4701-b802-acf016d3d123')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('0e850694-b20c-4b28-8c91-67fd7b1286a9','b2af7f85-7276-4701-b802-acf016d3d123')">Open In Tab</button></div><div id="d118a0e5-9c21-4b41-a5aa-e669bd538997" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>The CWT in PyWavelets is applied to discrete data by convolution with samples
+<div id="5c72df9a-5685-44ad-aa29-92e62cc5e1d4" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('91b6be24-a2bb-458e-bc9a-e66bb4083236','5c72df9a-5685-44ad-aa29-92e62cc5e1d4')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('91b6be24-a2bb-458e-bc9a-e66bb4083236','5c72df9a-5685-44ad-aa29-92e62cc5e1d4')">Open In Tab</button></div><div id="5b2c4a75-5eeb-4fa4-9a1e-6f77908d4998" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>The CWT in PyWavelets is applied to discrete data by convolution with samples
 of the integral of the wavelet. If <code class="docutils literal notranslate"><span class="pre">scale</span></code> is too low, this will result in
 a discrete filter that is inadequately sampled leading to aliasing as shown
 in the example below. Here the wavelet is <code class="docutils literal notranslate"><span class="pre">'cmor1.5-1.0'</span></code>. The left column of
@@ -959,8 +959,8 @@ the Nyquist limit occurs.</p>
 the input frequency in this function is normalized by 1/dt, or the sampling
 frequency fs. This function is useful for specifying the transform as a function
 of frequency directly.</p>
-<div class="try_examples_outer_container docutils container" id="ea958c06-ed72-41a1-83be-f75cade47d72">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('ea958c06-ed72-41a1-83be-f75cade47d72','83b01857-7c14-4050-b7f5-bfa4d14b3bcd','4c388288-8af5-4e22-b7c1-b97bfbdf6f39','../lite/tree/../notebooks/?path=771a047d_fa6a_49ce_83ca_1d68f650c80d.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="48aca561-5299-4712-ad4c-ac87470ffc63">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('48aca561-5299-4712-ad4c-ac87470ffc63','704af930-540a-427a-8ccb-38a304d9ad7b','185c0b0d-e2b8-4123-98be-bb0d2cb3b943','../lite/tree/../notebooks/?path=08f40faf_ea00_4df9_8a83_f7f22269f577.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 100 Hz sampling</span>
@@ -973,7 +973,7 @@ of frequency directly.</p>
 </div>
 </div>
 </div>
-<div id="4c388288-8af5-4e22-b7c1-b97bfbdf6f39" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('ea958c06-ed72-41a1-83be-f75cade47d72','4c388288-8af5-4e22-b7c1-b97bfbdf6f39')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('ea958c06-ed72-41a1-83be-f75cade47d72','4c388288-8af5-4e22-b7c1-b97bfbdf6f39')">Open In Tab</button></div><div id="83b01857-7c14-4050-b7f5-bfa4d14b3bcd" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div id="185c0b0d-e2b8-4123-98be-bb0d2cb3b943" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('48aca561-5299-4712-ad4c-ac87470ffc63','185c0b0d-e2b8-4123-98be-bb0d2cb3b943')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('48aca561-5299-4712-ad4c-ac87470ffc63','185c0b0d-e2b8-4123-98be-bb0d2cb3b943')">Open In Tab</button></div><div id="704af930-540a-427a-8ccb-38a304d9ad7b" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">pywt</span>
