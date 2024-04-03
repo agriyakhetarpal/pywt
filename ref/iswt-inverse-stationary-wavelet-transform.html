@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Inverse Stationary Wavelet Transform &#8212; PyWavelets Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/jupyterlite_sphinx.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/iswt-inverse-stationary-wavelet-transform';</script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within PyWavelets Documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multiresolution Analysis" href="mra.html" />
+    <link rel="prev" title="Stationary Wavelet Transform" href="swt-stationary-wavelet-transform.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 03, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">PyWavelets Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wavelets.html">Wavelets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal-extension-modes.html">Signal extension modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-discrete-wavelet-transform.html">Discrete Wavelet Transform (DWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="idwt-inverse-discrete-wavelet-transform.html">Inverse Discrete Wavelet Transform (IDWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-decompositions-overview.html">Overview of multilevel wavelet decompositions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-dwt-and-idwt.html">2D Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nd-dwt-and-idwt.html">nD Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-coefficient-handling.html">Handling DWT Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swt-stationary-wavelet-transform.html">Stationary Wavelet Transform</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inverse Stationary Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mra.html">Multiresolution Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelet-packets.html">Wavelet Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cwt.html">Continuous Wavelet Transform (CWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thresholding-functions.html">Thresholding functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-functions.html">Other functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Inverse...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="inverse-stationary-wavelet-transform">
+<span id="ref-iswt"></span><h1>Inverse Stationary Wavelet Transform<a class="headerlink" href="#inverse-stationary-wavelet-transform" title="Permalink to this heading">#</a></h1>
+<p>Inverse <a class="reference internal" href="swt-stationary-wavelet-transform.html#ref-swt"><span class="std std-ref">stationary wavelet transforms</span></a> are provided.</p>
+<p><strong>Note</strong>: These inverse transforms are not yet optimized for speed.  Only, the
+n-dimensional inverse transform currently has <code class="docutils literal notranslate"><span class="pre">axes</span></code> support.</p>
+<section id="multilevel-1d-iswt">
+<h2>Multilevel 1D <code class="docutils literal notranslate"><span class="pre">iswt</span></code><a class="headerlink" href="#multilevel-1d-iswt" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.iswt">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">iswt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.iswt" title="Permalink to this definition">#</a></dt>
+<dd><p>Multilevel 1D inverse discrete stationary wavelet transform.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>coeffs</strong><span class="classifier">array_like</span></dt><dd><p>Coefficients list of tuples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="n">cAn</span><span class="p">,</span> <span class="n">cDn</span><span class="p">),</span> <span class="o">...</span><span class="p">,</span> <span class="p">(</span><span class="n">cA2</span><span class="p">,</span> <span class="n">cD2</span><span class="p">),</span> <span class="p">(</span><span class="n">cA1</span><span class="p">,</span> <span class="n">cD1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>where cA is approximation, cD is details.  Index 1 corresponds to
+<code class="docutils literal notranslate"><span class="pre">start_level</span></code> from <code class="docutils literal notranslate"><span class="pre">pywt.swt</span></code>.</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name string</span></dt><dd><p>Wavelet to use</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">bool, optional</span></dt><dd><p>Controls the normalization used by the inverse transform. This must
+be set equal to the value that was used by <code class="docutils literal notranslate"><span class="pre">pywt.swt</span></code> to preserve the
+energy of a round-trip transform.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>1D array of reconstructed data.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="try_examples_outer_container docutils container" id="9c594ff9-13a7-424c-b34a-fefa76cb1ffe">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('9c594ff9-13a7-424c-b34a-fefa76cb1ffe','83b5fd38-e181-45fc-8583-5f6f38f945a7','96c59970-111c-449a-b8ed-75b7e6a8d79d','../lite/tree/../notebooks/?path=fe9d007c_268a_426a_b2a0_6fdbd96a102e.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">swt</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="s1">&#39;db2&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pywt</span><span class="o">.</span><span class="n">iswt</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="s1">&#39;db2&#39;</span><span class="p">)</span>
+<span class="go">array([ 1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="96c59970-111c-449a-b8ed-75b7e6a8d79d" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('9c594ff9-13a7-424c-b34a-fefa76cb1ffe','96c59970-111c-449a-b8ed-75b7e6a8d79d')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('9c594ff9-13a7-424c-b34a-fefa76cb1ffe','96c59970-111c-449a-b8ed-75b7e6a8d79d')">Open In Tab</button></div><div id="83b5fd38-e181-45fc-8583-5f6f38f945a7" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+
+</section>
+<section id="multilevel-2d-iswt2">
+<h2>Multilevel 2D <code class="docutils literal notranslate"><span class="pre">iswt2</span></code><a class="headerlink" href="#multilevel-2d-iswt2" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.iswt2">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">iswt2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-2,</span> <span class="pre">-1)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.iswt2" title="Permalink to this definition">#</a></dt>
+<dd><p>Multilevel 2D inverse discrete stationary wavelet transform.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>coeffs</strong><span class="classifier">list</span></dt><dd><p>Approximation and details coefficients:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="n">cA_n</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">cH_n</span><span class="p">,</span> <span class="n">cV_n</span><span class="p">,</span> <span class="n">cD_n</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="o">...</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">cA_2</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">cH_2</span><span class="p">,</span> <span class="n">cV_2</span><span class="p">,</span> <span class="n">cD_2</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="p">(</span><span class="n">cA_1</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">cH_1</span><span class="p">,</span> <span class="n">cV_1</span><span class="p">,</span> <span class="n">cD_1</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>where cA is approximation, cH is horizontal details, cV is
+vertical details, cD is diagonal details and n is the number of
+levels.  Index 1 corresponds to <code class="docutils literal notranslate"><span class="pre">start_level</span></code> from <code class="docutils literal notranslate"><span class="pre">pywt.swt2</span></code>.</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name string, or 2-tuple of wavelets</span></dt><dd><p>Wavelet to use.  This can also be a 2-tuple of wavelets to apply per
+axis.</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">bool, optional</span></dt><dd><p>Controls the normalization used by the inverse transform. This must
+be set equal to the value that was used by <code class="docutils literal notranslate"><span class="pre">pywt.swt2</span></code> to preserve
+the energy of a round-trip transform.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>2D array of reconstructed data.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="try_examples_outer_container docutils container" id="72c75f88-1d84-4265-9155-648a0aa9307c">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('72c75f88-1d84-4265-9155-648a0aa9307c','42ef076b-4a93-4030-b8c4-d6137050a2f3','bc451e34-c501-4ef6-b693-067088aa6195','../lite/tree/../notebooks/?path=5cb3a1e3_42e5_45c8_9f90_526dcc6d43a9.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">swt2</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>
+<span class="gp">... </span>                    <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">],[</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">]],</span>
+<span class="gp">... </span>                   <span class="s1">&#39;db1&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pywt</span><span class="o">.</span><span class="n">iswt2</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="s1">&#39;db1&#39;</span><span class="p">)</span>
+<span class="go">array([[  1.,   2.,   3.,   4.],</span>
+<span class="go">       [  5.,   6.,   7.,   8.],</span>
+<span class="go">       [  9.,  10.,  11.,  12.],</span>
+<span class="go">       [ 13.,  14.,  15.,  16.]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="bc451e34-c501-4ef6-b693-067088aa6195" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('72c75f88-1d84-4265-9155-648a0aa9307c','bc451e34-c501-4ef6-b693-067088aa6195')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('72c75f88-1d84-4265-9155-648a0aa9307c','bc451e34-c501-4ef6-b693-067088aa6195')">Open In Tab</button></div><div id="42ef076b-4a93-4030-b8c4-d6137050a2f3" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+
+</section>
+<section id="multilevel-n-dimensional-iswtn">
+<h2>Multilevel n-dimensional <code class="docutils literal notranslate"><span class="pre">iswtn</span></code><a class="headerlink" href="#multilevel-n-dimensional-iswtn" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.iswtn">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">iswtn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.iswtn" title="Permalink to this definition">#</a></dt>
+<dd><p>Multilevel nD inverse discrete stationary wavelet transform.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>coeffs</strong><span class="classifier">list</span></dt><dd><p>[{coeffs_level_n}, …, {coeffs_level_1}]: list of dict</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name string, or tuple of wavelets</span></dt><dd><p>Wavelet to use.  This can also be a tuple of wavelets to apply per
+axis in <code class="docutils literal notranslate"><span class="pre">axes</span></code>.</p>
+</dd>
+<dt><strong>axes</strong><span class="classifier">sequence of ints, optional</span></dt><dd><p>Axes over which to compute the inverse SWT. Axes may not be repeated.
+The default is <code class="docutils literal notranslate"><span class="pre">None</span></code>, which means transform all axes
+(<code class="docutils literal notranslate"><span class="pre">axes</span> <span class="pre">=</span> <span class="pre">range(data.ndim)</span></code>).</p>
+</dd>
+<dt><strong>norm</strong><span class="classifier">bool, optional</span></dt><dd><p>Controls the normalization used by the inverse transform. This must
+be set equal to the value that was used by <code class="docutils literal notranslate"><span class="pre">pywt.swtn</span></code> to preserve
+the energy of a round-trip transform.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nD array of reconstructed data.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="try_examples_outer_container docutils container" id="8175f1f6-afcd-4479-ad4a-d5084007bb06">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('8175f1f6-afcd-4479-ad4a-d5084007bb06','51d1cf9e-2b04-4ad3-8197-e1ba05d1e8dd','02c69d7f-8ed8-4155-8b1c-5c57b9ed7b13','../lite/tree/../notebooks/?path=fd5a1963_32c3_4c21_b771_a3ed67a25d66.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">swtn</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>
+<span class="gp">... </span>                    <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">],[</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">]],</span>
+<span class="gp">... </span>                   <span class="s1">&#39;db1&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pywt</span><span class="o">.</span><span class="n">iswtn</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="s1">&#39;db1&#39;</span><span class="p">)</span>
+<span class="go">array([[  1.,   2.,   3.,   4.],</span>
+<span class="go">       [  5.,   6.,   7.,   8.],</span>
+<span class="go">       [  9.,  10.,  11.,  12.],</span>
+<span class="go">       [ 13.,  14.,  15.,  16.]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="02c69d7f-8ed8-4155-8b1c-5c57b9ed7b13" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('8175f1f6-afcd-4479-ad4a-d5084007bb06','02c69d7f-8ed8-4155-8b1c-5c57b9ed7b13')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('8175f1f6-afcd-4479-ad4a-d5084007bb06','02c69d7f-8ed8-4155-8b1c-5c57b9ed7b13')">Open In Tab</button></div><div id="51d1cf9e-2b04-4ad3-8197-e1ba05d1e8dd" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="swt-stationary-wavelet-transform.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Stationary Wavelet Transform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mra.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multiresolution Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-1d-iswt">Multilevel 1D <code class="docutils literal notranslate"><span class="pre">iswt</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.iswt"><code class="docutils literal notranslate"><span class="pre">iswt()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-2d-iswt2">Multilevel 2D <code class="docutils literal notranslate"><span class="pre">iswt2</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.iswt2"><code class="docutils literal notranslate"><span class="pre">iswt2()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-n-dimensional-iswtn">Multilevel n-dimensional <code class="docutils literal notranslate"><span class="pre">iswtn</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.iswtn"><code class="docutils literal notranslate"><span class="pre">iswtn()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/PyWavelets/pywt/edit/main/doc/source/ref/iswt-inverse-stationary-wavelet-transform.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2006-2024, The PyWavelets Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

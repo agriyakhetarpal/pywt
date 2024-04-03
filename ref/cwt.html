@@ -1,0 +1,1188 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Continuous Wavelet Transform (CWT) &#8212; PyWavelets Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/jupyterlite_sphinx.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/cwt';</script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within PyWavelets Documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Thresholding functions" href="thresholding-functions.html" />
+    <link rel="prev" title="Wavelet Packets" href="wavelet-packets.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 03, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">PyWavelets Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wavelets.html">Wavelets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal-extension-modes.html">Signal extension modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-discrete-wavelet-transform.html">Discrete Wavelet Transform (DWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="idwt-inverse-discrete-wavelet-transform.html">Inverse Discrete Wavelet Transform (IDWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-decompositions-overview.html">Overview of multilevel wavelet decompositions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-dwt-and-idwt.html">2D Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nd-dwt-and-idwt.html">nD Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-coefficient-handling.html">Handling DWT Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swt-stationary-wavelet-transform.html">Stationary Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iswt-inverse-stationary-wavelet-transform.html">Inverse Stationary Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mra.html">Multiresolution Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelet-packets.html">Wavelet Packets</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Continuous Wavelet Transform (CWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thresholding-functions.html">Thresholding functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-functions.html">Other functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Continuous...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="continuous-wavelet-transform-cwt">
+<span id="ref-cwt"></span><h1>Continuous Wavelet Transform (CWT)<a class="headerlink" href="#continuous-wavelet-transform-cwt" title="Permalink to this heading">#</a></h1>
+<p>This section focuses on the one-dimensional Continuous Wavelet Transform. It
+introduces the main function <code class="docutils literal notranslate"><span class="pre">cwt</span></code> alongside several helper function, and
+also gives an overview over the available wavelets for this transfom.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>In simple terms, the Continuous Wavelet Transform is an analysis tool similar
+to the Fourier Transform, in that it takes a time-domain signal and returns
+the signal’s components in the frequency domain. However, in contrast to the
+Fourier Transform, the Continuous Wavelet Transform returns a two-dimensional
+result, providing information in the frequency- as well as in time-domain.
+Therefore, it is useful for periodic signals which change over time, such as
+audio, seismic signals and many others (see below for examples).</p>
+<p>For more background and an in-depth guide to the application of the Continuous
+Wavelet Transform, including topics such as statistical significance, the
+following well-known article is highly recommended:</p>
+<p><a class="reference external" href="https://paos.colorado.edu/research/wavelets/bams_79_01_0061.pdf">C. Torrence and G. Compo: “A Practical Guide to Wavelet Analysis”, Bulletin of the American Meteorological Society, vol. 79, no. 1, pp. 61-78, January 1998</a></p>
+</section>
+<section id="the-cwt-function">
+<h2>The <code class="docutils literal notranslate"><span class="pre">cwt</span></code> Function<a class="headerlink" href="#the-cwt-function" title="Permalink to this heading">#</a></h2>
+<p>This is the main function, which calculates the Continuous Wavelet Transform
+of a one-dimensional signal.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.cwt">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">cwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.cwt" title="Permalink to this definition">#</a></dt>
+<dd><p>One dimensional Continuous Wavelet Transform.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>data</strong><span class="classifier">array_like</span></dt><dd><p>Input signal</p>
+</dd>
+<dt><strong>scales</strong><span class="classifier">array_like</span></dt><dd><p>The wavelet scales to use. One can use
+<code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">=</span> <span class="pre">scale2frequency(wavelet,</span> <span class="pre">scale)/sampling_period</span></code> to determine
+what physical frequency, <code class="docutils literal notranslate"><span class="pre">f</span></code>. Here, <code class="docutils literal notranslate"><span class="pre">f</span></code> is in hertz when the
+<code class="docutils literal notranslate"><span class="pre">sampling_period</span></code> is given in seconds.</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name</span></dt><dd><p>Wavelet to use</p>
+</dd>
+<dt><strong>sampling_period</strong><span class="classifier">float</span></dt><dd><p>Sampling period for the frequencies output (optional).
+The values computed for <code class="docutils literal notranslate"><span class="pre">coefs</span></code> are independent of the choice of
+<code class="docutils literal notranslate"><span class="pre">sampling_period</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">scales</span></code> is not scaled by the sampling
+period).</p>
+</dd>
+<dt><strong>method</strong><span class="classifier">{‘conv’, ‘fft’}, optional</span></dt><dd><dl class="simple">
+<dt>The method used to compute the CWT. Can be any of:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conv</span></code> uses <code class="docutils literal notranslate"><span class="pre">numpy.convolve</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fft</span></code> uses frequency domain convolution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code> uses automatic selection based on an estimate of the
+computational complexity at each scale.</p></li>
+</ul>
+</dd>
+</dl>
+<p>The <code class="docutils literal notranslate"><span class="pre">conv</span></code> method complexity is <code class="docutils literal notranslate"><span class="pre">O(len(scale)</span> <span class="pre">*</span> <span class="pre">len(data))</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">fft</span></code> method is <code class="docutils literal notranslate"><span class="pre">O(N</span> <span class="pre">*</span> <span class="pre">log2(N))</span></code> with
+<code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">len(scale)</span> <span class="pre">+</span> <span class="pre">len(data)</span> <span class="pre">-</span> <span class="pre">1</span></code>. It is well suited for large size
+signals but slightly slower than <code class="docutils literal notranslate"><span class="pre">conv</span></code> on small ones.</p>
+</dd>
+<dt><strong>axis: int, optional</strong></dt><dd><p>Axis over which to compute the CWT. If not given, the last axis is
+used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>coefs</strong><span class="classifier">array_like</span></dt><dd><p>Continuous wavelet transform of the input signal for the given scales
+and wavelet. The first axis of <code class="docutils literal notranslate"><span class="pre">coefs</span></code> corresponds to the scales.
+The remaining axes match the shape of <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+</dd>
+<dt><strong>frequencies</strong><span class="classifier">array_like</span></dt><dd><p>If the unit of sampling period are seconds and given, then frequencies
+are in hertz. Otherwise, a sampling period of 1 is assumed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Size of coefficients arrays depends on the length of the input array and
+the length of given scales.</p>
+<p class="rubric">Examples</p>
+<div class="try_examples_outer_container docutils container" id="806c414e-11bb-42e2-b2dc-4722a11e5c19">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('806c414e-11bb-42e2-b2dc-4722a11e5c19','83b61376-b982-4b86-90f4-6740627f36ae','c5d5d5f3-dee0-4514-bd2c-18763cce83ff','../lite/tree/../notebooks/?path=485686a1_3eab_4816_a351_cb96d7d001fb.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="mi">32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coef</span><span class="p">,</span> <span class="n">freqs</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">129</span><span class="p">),</span><span class="s1">&#39;gaus1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sig</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mf">0.4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mf">0.4</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cwtmatr</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="s1">&#39;mexh&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cwtmatr</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;PRGn&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+<span class="gp">... </span>           <span class="n">vmax</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">cwtmatr</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">vmin</span><span class="o">=-</span><span class="nb">abs</span><span class="p">(</span><span class="n">cwtmatr</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div id="c5d5d5f3-dee0-4514-bd2c-18763cce83ff" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('806c414e-11bb-42e2-b2dc-4722a11e5c19','c5d5d5f3-dee0-4514-bd2c-18763cce83ff')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('806c414e-11bb-42e2-b2dc-4722a11e5c19','c5d5d5f3-dee0-4514-bd2c-18763cce83ff')">Open In Tab</button></div><div id="83b61376-b982-4b86-90f4-6740627f36ae" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+
+</section>
+<section id="a-comprehensive-example-of-the-cwt">
+<h2>A comprehensive example of the CWT<a class="headerlink" href="#a-comprehensive-example-of-the-cwt" title="Permalink to this heading">#</a></h2>
+<p>Here is a simple end-to-end example of how to calculate the CWT of a simple
+signal, and how to plot it using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<p>First, we generate an artificial signal to be analyzed. We are
+using the sum of two sine functions with increasing frequency, known as “chirp”.
+For reference, we also generate a plot of the signal and the two time-dependent
+frequency components it contains.</p>
+<p>We then apply the Continuous Wavelet Transform
+using a complex Morlet wavlet with a given center frequency and bandwidth
+(namely <code class="docutils literal notranslate"><span class="pre">cmor1.5-1.0</span></code>). We then plot the so-called “scaleogram”, which is the
+2D plot of the signal strength vs. time and frequency.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pywt</span>
+
+
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">t0</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">chirp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chirp</span><span class="p">,</span> <span class="n">frequency</span>
+
+
+<span class="c1"># generate signal</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">chirp1</span><span class="p">,</span> <span class="n">frequency1</span> <span class="o">=</span> <span class="n">make_chirp</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">chirp2</span><span class="p">,</span> <span class="n">frequency2</span> <span class="o">=</span> <span class="n">make_chirp</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">chirp</span> <span class="o">=</span> <span class="n">chirp1</span> <span class="o">+</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="n">chirp2</span>
+<span class="n">chirp</span> <span class="o">*=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># plot signal</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">chirp</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">frequency1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">frequency2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Signal&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;True frequency (Hz)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Input signal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/plot_cwt_scaleogram_00_00.png" class="plot-directive" src="../_images/plot_cwt_scaleogram_00_00.png" />
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform CWT</span>
+<span class="n">wavelet</span> <span class="o">=</span> <span class="s2">&quot;cmor1.5-1.0&quot;</span>
+<span class="c1"># logarithmic scale for scales, as suggested by Torrence &amp; Compo:</span>
+<span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sampling_period</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">cwtmatr</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span><span class="n">chirp</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">,</span> <span class="n">sampling_period</span><span class="o">=</span><span class="n">sampling_period</span><span class="p">)</span>
+<span class="c1"># absolute take absolute value of complex result</span>
+<span class="n">cwtmatr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cwtmatr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># plot result using matplotlib&#39;s pcolormesh (image with annoted axes)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">cwtmatr</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Continuous Wavelet Transform (Scaleogram)&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># plot fourier transform for comparison</span>
+<span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="n">rfft</span><span class="p">,</span> <span class="n">rfftfreq</span>
+
+<span class="n">yf</span> <span class="o">=</span> <span class="n">rfft</span><span class="p">(</span><span class="n">chirp</span><span class="p">)</span>
+<span class="n">xf</span> <span class="o">=</span> <span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chirp</span><span class="p">),</span> <span class="n">sampling_period</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yf</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Fourier Transform&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/plot_cwt_scaleogram_01_00.png" class="plot-directive" src="../_images/plot_cwt_scaleogram_01_00.png" />
+</figure>
+<p>The Continuous Wavelet Transform can resolve the two frequency components clearly,
+which is an obvious advantage over the Fourier Transform in this case. The scales
+(widths) are given on a logarithmic scale in the example. The scales determine the
+frequency resolution of the scaleogram. However, it is not straightforward to
+convert them to frequencies, but luckily, <code class="docutils literal notranslate"><span class="pre">cwt</span></code> calculates the correct frequencies
+for us. There are also helper functions, that perform this conversion in both ways.
+For more information, see <a class="reference internal" href="#choosing-scales"><span class="std std-ref">Choosing the scales for cwt</span></a> and <a class="reference internal" href="#converting-frequency"><span class="std std-ref">Converting frequency to scale for cwt</span></a>.</p>
+<p>Also note, that the raw output of <code class="docutils literal notranslate"><span class="pre">cwt</span></code> is complex if a complex wavelet is used.
+For visualization, it is therefore necessary to use the absolute value.</p>
+<section id="wavelet-bandwidth-and-center-frequencies">
+<h3>Wavelet bandwidth and center frequencies<a class="headerlink" href="#wavelet-bandwidth-and-center-frequencies" title="Permalink to this heading">#</a></h3>
+<p>This example shows how the Complex Morlet Wavelet can be configured for optimum
+results using the <code class="docutils literal notranslate"><span class="pre">center_frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">bandwidth_frequency</span></code> parameters,
+which can simply be appended to the wavelet’s string identifier <code class="docutils literal notranslate"><span class="pre">cmor</span></code> for
+convenience. It also demonstrates the importance of choosing appropriate values
+for the wavelet’s center frequency and bandwidth. The right values will depend
+on the signal being analyzed. As shown below, bad values may lead to poor
+resolution or artifacts.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pywt</span>
+
+<span class="c1"># plot complex morlet wavelets with different center frequencies and bandwidths</span>
+<span class="n">wavelets</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;cmor</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">wavelet</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">wavelets</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">psi</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">ContinuousWavelet</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span><span class="o">.</span><span class="n">wavefun</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;real&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;imag&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Complex Morlet Wavelets with different center frequencies and bandwidths&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/cwt_wavelet_frequency_bandwidth_demo_00_00.png" class="plot-directive" src="../_images/cwt_wavelet_frequency_bandwidth_demo_00_00.png" />
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">t0</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">chirp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">frequency</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chirp</span><span class="p">,</span> <span class="n">frequency</span>
+
+
+<span class="k">def</span> <span class="nf">plot_wavelet</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+    <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+    <span class="n">cwtmatr</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">cwt</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">widths</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">,</span> <span class="n">sampling_period</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">cwtmatr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cwtmatr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">cwtmatr</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<span class="c1"># generate signal</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">chirp1</span><span class="p">,</span> <span class="n">frequency1</span> <span class="o">=</span> <span class="n">make_chirp</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">chirp2</span><span class="p">,</span> <span class="n">frequency2</span> <span class="o">=</span> <span class="n">make_chirp</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">chirp</span> <span class="o">=</span> <span class="n">chirp1</span> <span class="o">+</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="n">chirp2</span>
+<span class="n">chirp</span> <span class="o">*=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># perform CWT with different wavelets on same signal and plot results</span>
+<span class="n">wavelets</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;cmor</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">wavelet</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">wavelets</span><span class="p">):</span>
+    <span class="n">plot_wavelet</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">chirp</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Scaleograms of the same signal with different wavelets&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/cwt_wavelet_frequency_bandwidth_demo_01_00.png" class="plot-directive" src="../_images/cwt_wavelet_frequency_bandwidth_demo_01_00.png" />
+</figure>
+</section>
+</section>
+<section id="continuous-wavelet-families">
+<h2>Continuous Wavelet Families<a class="headerlink" href="#continuous-wavelet-families" title="Permalink to this heading">#</a></h2>
+<p>A variety of continuous wavelets have been implemented. A list of the available
+wavelet names compatible with <code class="docutils literal notranslate"><span class="pre">cwt</span></code> can be obtained by:</p>
+<div class="try_examples_outer_container docutils container" id="d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0','91edbbf3-d00d-4a9e-a79a-df090a8d301c','3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8','../lite/tree/../notebooks/?path=8a8af226_60a3_4514_a973_0ff15ec4070c.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wavelist</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">wavelist</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0','3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('d181cbc7-ad9a-42d7-9a37-3f311b0ab1c0','3b6cdf2e-0502-4ab9-b1fc-a5f1cc828bd8')">Open In Tab</button></div><div id="91edbbf3-d00d-4a9e-a79a-df090a8d301c" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>Here is an overview of all available wavelets for <code class="docutils literal notranslate"><span class="pre">cwt</span></code>. Note, that they can be
+customized by passing parameters such as <code class="docutils literal notranslate"><span class="pre">center_frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">bandwidth_frequency</span></code>
+(see <a class="reference internal" href="wavelets.html#continuouswavelet"><span class="std std-ref">ContinuousWavelet object</span></a> for details).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pywt</span>
+
+<span class="n">wavlist</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">wavelist</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;continuous&quot;</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wavlist</span><span class="p">)</span> <span class="o">+</span> <span class="n">cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">cols</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                        <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">wavelet</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">wavlist</span><span class="p">):</span>
+    <span class="c1"># A few wavelet families require parameters in the string name</span>
+    <span class="k">if</span> <span class="n">wavelet</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cmor&#39;</span><span class="p">,</span> <span class="s1">&#39;shan&#39;</span><span class="p">]:</span>
+        <span class="n">wavelet</span> <span class="o">+=</span> <span class="s1">&#39;1-1&#39;</span>
+    <span class="k">elif</span> <span class="n">wavelet</span> <span class="o">==</span> <span class="s1">&#39;fbsp&#39;</span><span class="p">:</span>
+        <span class="n">wavelet</span> <span class="o">+=</span> <span class="s1">&#39;1-1.5-1.0&#39;</span>
+
+    <span class="p">[</span><span class="n">psi</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">ContinuousWavelet</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span><span class="o">.</span><span class="n">wavefun</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;real&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;imag&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">wavelet</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Available wavelets for CWT&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/plot_wavelets.png" class="plot-directive" src="../_images/plot_wavelets.png" />
+</figure>
+<section id="mexican-hat-wavelet">
+<h3>Mexican Hat Wavelet<a class="headerlink" href="#mexican-hat-wavelet" title="Permalink to this heading">#</a></h3>
+<p>The mexican hat wavelet <code class="docutils literal notranslate"><span class="pre">&quot;mexh&quot;</span></code> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = \frac{2}{\sqrt{3} \sqrt[4]{\pi}} \exp^{-\frac{t^2}{2}}
+          \left( 1 - t^2 \right)\]</div>
+<p>where the constant out front is a normalization factor so that the wavelet has
+unit energy.</p>
+</section>
+<section id="morlet-wavelet">
+<h3>Morlet Wavelet<a class="headerlink" href="#morlet-wavelet" title="Permalink to this heading">#</a></h3>
+<p>The Morlet wavelet <code class="docutils literal notranslate"><span class="pre">&quot;morl&quot;</span></code> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = \exp^{-\frac{t^2}{2}} \cos(5t)\]</div>
+</section>
+<section id="complex-morlet-wavelets">
+<h3>Complex Morlet Wavelets<a class="headerlink" href="#complex-morlet-wavelets" title="Permalink to this heading">#</a></h3>
+<p>The complex Morlet wavelet (<code class="docutils literal notranslate"><span class="pre">&quot;cmorB-C&quot;</span></code> with floating point values B, C) is
+given by:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = \frac{1}{\sqrt{\pi B}} \exp^{-\frac{t^2}{B}}
+          \exp^{\mathrm{j} 2\pi C t}\]</div>
+<p>where <span class="math notranslate nohighlight">\(B\)</span> is the bandwidth and <span class="math notranslate nohighlight">\(C\)</span> is the center frequency.</p>
+</section>
+<section id="gaussian-derivative-wavelets">
+<h3>Gaussian Derivative Wavelets<a class="headerlink" href="#gaussian-derivative-wavelets" title="Permalink to this heading">#</a></h3>
+<p>The Gaussian wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;gausP&quot;</span></code> where P is an integer between 1 and and 8)
+correspond to the Pth order derivatives of the function:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = C \exp^{-t^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is an order-dependent normalization constant.</p>
+</section>
+<section id="complex-gaussian-derivative-wavelets">
+<h3>Complex Gaussian Derivative Wavelets<a class="headerlink" href="#complex-gaussian-derivative-wavelets" title="Permalink to this heading">#</a></h3>
+<p>The complex Gaussian wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;cgauP&quot;</span></code> where P is an integer between 1 and
+8) correspond to the Pth order derivatives of the function:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = C \exp^{-\mathrm{j} t}\exp^{-t^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is an order-dependent normalization constant.</p>
+</section>
+<section id="shannon-wavelets">
+<h3>Shannon Wavelets<a class="headerlink" href="#shannon-wavelets" title="Permalink to this heading">#</a></h3>
+<p>The Shannon wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;shanB-C&quot;</span></code> with floating point values B and C)
+correspond to the following wavelets:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = \sqrt{B} \frac{\sin(\pi B t)}{\pi B t} \exp^{\mathrm{j}2 \pi C t}\]</div>
+<p>where <span class="math notranslate nohighlight">\(B\)</span> is the bandwidth and <span class="math notranslate nohighlight">\(C\)</span> is the center frequency.</p>
+</section>
+<section id="frequency-b-spline-wavelets">
+<h3>Frequency B-Spline Wavelets<a class="headerlink" href="#frequency-b-spline-wavelets" title="Permalink to this heading">#</a></h3>
+<p>The frequency B-spline wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;fpspM-B-C&quot;</span></code> with integer M and floating
+point B, C) correspond to the following wavelets:</p>
+<div class="math notranslate nohighlight">
+\[\psi(t) = \sqrt{B}
+          \left[\frac{\sin(\pi B \frac{t}{M})}{\pi B \frac{t}{M}}\right]^M
+          \exp^{2\mathrm{j} \pi C t}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M\)</span> is the spline order, <span class="math notranslate nohighlight">\(B\)</span> is the bandwidth and <span class="math notranslate nohighlight">\(C\)</span> is
+the center frequency.</p>
+</section>
+</section>
+<section id="choosing-the-scales-for-cwt">
+<span id="choosing-scales"></span><h2>Choosing the scales for <code class="docutils literal notranslate"><span class="pre">cwt</span></code><a class="headerlink" href="#choosing-the-scales-for-cwt" title="Permalink to this heading">#</a></h2>
+<p>For each of the wavelets described below, the implementation in PyWavelets
+evaluates the wavelet function for <span class="math notranslate nohighlight">\(t\)</span> over the range
+<code class="docutils literal notranslate"><span class="pre">[wavelet.lower_bound,</span> <span class="pre">wavelet.upper_bound]</span></code> (with default range
+<span class="math notranslate nohighlight">\([-8, 8]\)</span>). <code class="docutils literal notranslate"><span class="pre">scale</span> <span class="pre">=</span> <span class="pre">1</span></code> corresponds to the case where the extent of the
+wavelet is <code class="docutils literal notranslate"><span class="pre">(wavelet.upper_bound</span> <span class="pre">-</span> <span class="pre">wavelet.lower_bound</span> <span class="pre">+</span> <span class="pre">1)</span></code> samples of the
+digital signal being analyzed. Larger scales correspond to stretching of the
+wavelet. For example, at <code class="docutils literal notranslate"><span class="pre">scale=10</span></code> the wavelet is stretched by a factor of
+10, making it sensitive to lower frequencies in the signal.</p>
+<p>To relate a given scale to a specific signal frequency, the sampling period
+of the signal must be known. <a class="reference internal" href="other-functions.html#pywt.scale2frequency" title="pywt.scale2frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">pywt.scale2frequency()</span></code></a> can be used to
+convert a list of scales to their corresponding frequencies. The proper choice
+of scales depends on the chosen wavelet, so <a class="reference internal" href="other-functions.html#pywt.scale2frequency" title="pywt.scale2frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">pywt.scale2frequency()</span></code></a> should
+be used to get an idea of an appropriate range for the signal of interest.</p>
+<p>For the <code class="docutils literal notranslate"><span class="pre">cmor</span></code>, <code class="docutils literal notranslate"><span class="pre">fbsp</span></code> and <code class="docutils literal notranslate"><span class="pre">shan</span></code> wavelets, the user can specify a
+specific a normalized center frequency. A value of 1.0 corresponds to 1/dt
+where dt is the sampling period. In other words, when analyzing a signal
+sampled at 100 Hz, a center frequency of 1.0 corresponds to ~100 Hz at
+<code class="docutils literal notranslate"><span class="pre">scale</span> <span class="pre">=</span> <span class="pre">1</span></code>. This is above the Nyquist rate of 50 Hz, so for this
+particular wavelet, one would analyze a signal using <code class="docutils literal notranslate"><span class="pre">scales</span> <span class="pre">&gt;=</span> <span class="pre">2</span></code>.</p>
+<div class="try_examples_outer_container docutils container" id="0e850694-b20c-4b28-8c91-67fd7b1286a9">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('0e850694-b20c-4b28-8c91-67fd7b1286a9','d118a0e5-9c21-4b41-a5aa-e669bd538997','b2af7f85-7276-4701-b802-acf016d3d123','../lite/tree/../notebooks/?path=916e1cd0_c408_4c7f_a793_0bb5d6119cbd.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 100 Hz sampling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">scale2frequency</span><span class="p">(</span><span class="s1">&#39;cmor1.5-1.0&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="o">/</span> <span class="n">dt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frequencies</span>
+<span class="go">array([ 100.        ,   50.        ,   33.33333333,   25.        ])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="b2af7f85-7276-4701-b802-acf016d3d123" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('0e850694-b20c-4b28-8c91-67fd7b1286a9','b2af7f85-7276-4701-b802-acf016d3d123')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('0e850694-b20c-4b28-8c91-67fd7b1286a9','b2af7f85-7276-4701-b802-acf016d3d123')">Open In Tab</button></div><div id="d118a0e5-9c21-4b41-a5aa-e669bd538997" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>The CWT in PyWavelets is applied to discrete data by convolution with samples
+of the integral of the wavelet. If <code class="docutils literal notranslate"><span class="pre">scale</span></code> is too low, this will result in
+a discrete filter that is inadequately sampled leading to aliasing as shown
+in the example below. Here the wavelet is <code class="docutils literal notranslate"><span class="pre">'cmor1.5-1.0'</span></code>. The left column of
+the figure shows the discrete filters used in the convolution at various
+scales. The right column are the corresponding Fourier power spectra of each
+filter.. For scales 1 and 2 it can be seen that aliasing due to violation of
+the Nyquist limit occurs.</p>
+</section>
+<section id="converting-frequency-to-scale-for-cwt">
+<span id="converting-frequency"></span><h2>Converting frequency to scale for <code class="docutils literal notranslate"><span class="pre">cwt</span></code><a class="headerlink" href="#converting-frequency-to-scale-for-cwt" title="Permalink to this heading">#</a></h2>
+<p>To convert frequency to scale for use in the wavelet transform the function
+<code class="xref py py-func docutils literal notranslate"><span class="pre">pywt.frequency2scale()</span></code> can be used. This is the complement of the
+<a class="reference internal" href="other-functions.html#pywt.scale2frequency" title="pywt.scale2frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">pywt.scale2frequency()</span></code></a> function as seen in the previous section. Note that
+the input frequency in this function is normalized by 1/dt, or the sampling
+frequency fs. This function is useful for specifying the transform as a function
+of frequency directly.</p>
+<div class="try_examples_outer_container docutils container" id="ea958c06-ed72-41a1-83be-f75cade47d72">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('ea958c06-ed72-41a1-83be-f75cade47d72','83b01857-7c14-4050-b7f5-bfa4d14b3bcd','4c388288-8af5-4e22-b7c1-b97bfbdf6f39','../lite/tree/../notebooks/?path=771a047d_fa6a_49ce_83ca_1d68f650c80d.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 100 Hz sampling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">dt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">33.33333333</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span> <span class="o">/</span> <span class="n">fs</span> <span class="c1"># normalize</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scale</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">frequency2scale</span><span class="p">(</span><span class="s1">&#39;cmor1.5-1.0&#39;</span><span class="p">,</span> <span class="n">frequencies</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scale</span>
+<span class="go">array([ 1.,  2.,  3.,  4.])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="4c388288-8af5-4e22-b7c1-b97bfbdf6f39" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('ea958c06-ed72-41a1-83be-f75cade47d72','4c388288-8af5-4e22-b7c1-b97bfbdf6f39')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('ea958c06-ed72-41a1-83be-f75cade47d72','4c388288-8af5-4e22-b7c1-b97bfbdf6f39')">Open In Tab</button></div><div id="83b01857-7c14-4050-b7f5-bfa4d14b3bcd" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pywt</span>
+
+<span class="n">wav</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">ContinuousWavelet</span><span class="p">(</span><span class="s1">&#39;cmor1.5-1.0&#39;</span><span class="p">)</span>
+
+<span class="c1"># print the range over which the wavelet will be evaluated</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Continuous wavelet will be evaluated over the range &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">wav</span><span class="o">.</span><span class="n">lower_bound</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">wav</span><span class="o">.</span><span class="n">upper_bound</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="n">width</span> <span class="o">=</span> <span class="n">wav</span><span class="o">.</span><span class="n">upper_bound</span> <span class="o">-</span> <span class="n">wav</span><span class="o">.</span><span class="n">lower_bound</span>
+
+<span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+
+<span class="n">max_len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span><span class="o">*</span><span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_len</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scales</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scales</span><span class="p">):</span>
+
+    <span class="c1"># The following code is adapted from the internals of cwt</span>
+    <span class="n">int_psi</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">integrate_wavelet</span><span class="p">(</span><span class="n">wav</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">scale</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">scale</span> <span class="o">*</span> <span class="n">step</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">int_psi</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">int_psi</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">)</span>
+
+    <span class="c1"># normalize int_psi for easier plotting</span>
+    <span class="n">int_psi</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">int_psi</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># discrete samples of the integrated wavelet</span>
+    <span class="n">filt</span> <span class="o">=</span> <span class="n">int_psi</span><span class="p">[</span><span class="n">j</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># The CWT consists of convolution of filt with the signal at this scale</span>
+    <span class="c1"># Here we plot this discrete convolution kernel at each scale.</span>
+
+    <span class="n">nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filt</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">nt</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">nt</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">filt</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">filt</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">max_len</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_len</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;scale = </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">max_len</span><span class="p">)</span>
+    <span class="n">filt_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">max_len</span><span class="p">))</span>
+    <span class="n">filt_fft</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">filt_fft</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">filt_fft</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$-\pi$&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\pi$&#39;</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;scale = </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (samples)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (radians)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;real&#39;</span><span class="p">,</span> <span class="s1">&#39;imaginary&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Power&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;filter&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;|FFT(filter)|$^2$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/cwt_scaling_demo.png" class="plot-directive" src="../_images/cwt_scaling_demo.png" />
+</figure>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="wavelet-packets.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Wavelet Packets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="thresholding-functions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Thresholding functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cwt-function">The <code class="docutils literal notranslate"><span class="pre">cwt</span></code> Function</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.cwt"><code class="docutils literal notranslate"><span class="pre">cwt()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-comprehensive-example-of-the-cwt">A comprehensive example of the CWT</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-bandwidth-and-center-frequencies">Wavelet bandwidth and center frequencies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-wavelet-families">Continuous Wavelet Families</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mexican-hat-wavelet">Mexican Hat Wavelet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morlet-wavelet">Morlet Wavelet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-morlet-wavelets">Complex Morlet Wavelets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-derivative-wavelets">Gaussian Derivative Wavelets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-gaussian-derivative-wavelets">Complex Gaussian Derivative Wavelets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-wavelets">Shannon Wavelets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-b-spline-wavelets">Frequency B-Spline Wavelets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-scales-for-cwt">Choosing the scales for <code class="docutils literal notranslate"><span class="pre">cwt</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-frequency-to-scale-for-cwt">Converting frequency to scale for <code class="docutils literal notranslate"><span class="pre">cwt</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/PyWavelets/pywt/edit/main/doc/source/ref/cwt.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2006-2024, The PyWavelets Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

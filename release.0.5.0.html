@@ -1,0 +1,920 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyWavelets 0.5.0 Release Notes &#8212; PyWavelets Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pywavelets.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/jupyterlite_sphinx.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'release.0.5.0';</script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within PyWavelets Documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PyWavelets 0.4.0 Release Notes" href="release.0.4.0.html" />
+    <link rel="prev" title="PyWavelets 0.5.1 Release Notes" href="release.0.5.1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 03, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">PyWavelets Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ref/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="ref/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="release.1.6.0.html">PyWavelets 1.6.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.5.0.html">PyWavelets 1.5.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.4.1.html">PyWavelets 1.4.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.4.0.html">PyWavelets 1.4.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.3.0.html">PyWavelets 1.3.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.2.0.html">PyWavelets 1.2.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.1.1.html">PyWavelets 1.1.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.0.0.html">PyWavelets 1.0.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.0.3.html">PyWavelets 1.0.3 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.0.2.html">PyWavelets 1.0.2 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.0.1.html">PyWavelets 1.0.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.1.1.0.html">PyWavelets 1.1.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.0.5.2.html">PyWavelets 0.5.2 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.0.5.1.html">PyWavelets 0.5.1 Release Notes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyWavelets 0.5.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.0.4.0.html">PyWavelets 0.4.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.0.3.0.html">PyWavelets 0.3.0 Release Notes</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="releasenotes.html" class="nav-link">Release Notes</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">PyWavelets...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pywavelets-0-5-0-release-notes">
+<h1><a class="toc-backref" href="#id1">PyWavelets 0.5.0 Release Notes</a><a class="headerlink" href="#pywavelets-0-5-0-release-notes" title="Permalink to this heading">#</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pywavelets-0-5-0-release-notes" id="id1">PyWavelets 0.5.0 Release Notes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#new-features" id="id2">New features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#d-continuous-wavelet-transforms" id="id3">1D Continuous Wavelet Transforms</a></p></li>
+<li><p><a class="reference internal" href="#new-discrete-wavelets" id="id4">New discrete wavelets</a></p></li>
+<li><p><a class="reference internal" href="#new-extension-mode-reflect" id="id5">New extension mode: reflect</a></p></li>
+<li><p><a class="reference internal" href="#multilevel-dwt-coefficient-handling" id="id6">Multilevel DWT Coefficient Handling</a></p></li>
+<li><p><a class="reference internal" href="#more-c-function-calls-release-the-gil" id="id7">More C function calls release the GIL</a></p></li>
+<li><p><a class="reference internal" href="#multilevel-wavelet-transforms-along-specific-axes" id="id8">Multilevel wavelet transforms along specific axes</a></p></li>
+<li><p><a class="reference internal" href="#faster-multilevel-stationary-wavelet-transforms" id="id9">Faster multilevel stationary wavelet transforms</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#deprecated-features" id="id10">Deprecated features</a></p></li>
+<li><p><a class="reference internal" href="#backwards-incompatible-changes" id="id11">Backwards incompatible changes</a></p></li>
+<li><p><a class="reference internal" href="#bugs-fixed" id="id12">Bugs Fixed</a></p></li>
+<li><p><a class="reference internal" href="#other-changes" id="id13">Other changes</a></p></li>
+<li><p><a class="reference internal" href="#authors" id="id14">Authors</a></p>
+<ul>
+<li><p><a class="reference internal" href="#issues-closed-for-v0-5-0" id="id15">Issues closed for v0.5.0</a></p></li>
+<li><p><a class="reference internal" href="#pull-requests-for-v0-5-0" id="id16">Pull requests for v0.5.0</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>PyWavelets is a Python toolbox implementing both discrete and continuous
+wavelet transforms (mathematical time-frequency transforms) with a wide range
+of built-in wavelets.  C/Cython are used for the low-level routines, enabling
+high performance.  Key Features of PyWavelets are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>1D, 2D and nD Forward and Inverse Discrete Wavelet Transform (DWT and IDWT)</p></li>
+<li><p>1D, 2D and nD Multilevel DWT and IDWT</p></li>
+<li><p>1D and 2D Forward and Inverse Stationary Wavelet Transform</p></li>
+<li><p>1D and 2D Wavelet Packet decomposition and reconstruction</p></li>
+<li><p>1D Continuous Wavelet Transform</p></li>
+<li><p>When multiple valid implementations are available, we have chosen to maintain consistency with MATLAB™’s Wavelet Toolbox.</p></li>
+</ul>
+</div></blockquote>
+<p>PyWavelets 0.5.0 is the culmination of 1 year of work.  In addition to
+several new features, substantial refactoring of the underlying C and Cython
+code have been made.</p>
+<p>This release requires Python 2.6, 2.7 or 3.3-3.5 and NumPy 1.9.1 or greater.
+This will be the final release supporting Python 2.6 and 3.3.</p>
+<p>Highlights of this release include:</p>
+<ul class="simple">
+<li><p>1D continuous wavelet transforms</p></li>
+<li><p>new discrete wavelets added (additional Debauchies and Coiflet wavelets)</p></li>
+<li><p>new ‘reflect’ extension mode for discrete wavelet transforms</p></li>
+<li><p>faster performance for multilevel forward stationary wavelet transforms (SWT)</p></li>
+<li><p>n-dimensional support added to forward SWT</p></li>
+<li><p>routines to convert multilevel DWT coefficients to and from a single array</p></li>
+<li><p>axis support for multilevel DWT</p></li>
+<li><p>substantial refactoring/reorganization of the underlying C and Cython code</p></li>
+</ul>
+<section id="new-features">
+<h2><a class="toc-backref" href="#id2">New features</a><a class="headerlink" href="#new-features" title="Permalink to this heading">#</a></h2>
+<section id="d-continuous-wavelet-transforms">
+<h3><a class="toc-backref" href="#id3">1D Continuous Wavelet Transforms</a><a class="headerlink" href="#d-continuous-wavelet-transforms" title="Permalink to this heading">#</a></h3>
+<p>A wide range of continuous wavelets are now available.  These include the
+following:</p>
+<ul class="simple">
+<li><p>Gaussian wavelets (<code class="docutils literal notranslate"><span class="pre">gaus1</span></code>…``gaus8``)</p></li>
+<li><p>Mexican hat wavelet (<code class="docutils literal notranslate"><span class="pre">mexh</span></code>)</p></li>
+<li><p>Morlet wavelet (<code class="docutils literal notranslate"><span class="pre">morl</span></code>)</p></li>
+<li><p>Complex Gaussian wavelets (<code class="docutils literal notranslate"><span class="pre">cgau1</span></code>…``cgau8``)</p></li>
+<li><p>Shannon wavelet (<code class="docutils literal notranslate"><span class="pre">shan</span></code>)</p></li>
+<li><p>Frequency B-Spline wavelet (<code class="docutils literal notranslate"><span class="pre">fbsp</span></code>)</p></li>
+<li><p>Complex Morlet wavelet (<code class="docutils literal notranslate"><span class="pre">cmor</span></code>)</p></li>
+</ul>
+<p>Also, see the new CWT-related demo: demo/cwt_analysis.py</p>
+</section>
+<section id="new-discrete-wavelets">
+<h3><a class="toc-backref" href="#id4">New discrete wavelets</a><a class="headerlink" href="#new-discrete-wavelets" title="Permalink to this heading">#</a></h3>
+<p>Additional Debauchies wavelets (<code class="docutils literal notranslate"><span class="pre">db20</span></code>…``db38``) and Coiflets
+(<code class="docutils literal notranslate"><span class="pre">coif6</span></code>…``coif17``) have been added.</p>
+</section>
+<section id="new-extension-mode-reflect">
+<h3><a class="toc-backref" href="#id5">New extension mode: reflect</a><a class="headerlink" href="#new-extension-mode-reflect" title="Permalink to this heading">#</a></h3>
+<p>Discrete wavelet transforms support a new extension mode, <code class="docutils literal notranslate"><span class="pre">reflect</span></code>.  This
+mode pads an array symmetrically, but without repeating the edge value.  As an
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">pad</span>      <span class="n">array</span>      <span class="n">pad</span>
+<span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="o">|</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="o">|</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>This differs from <code class="docutils literal notranslate"><span class="pre">symmetric</span></code>, which repeats the values at the boundaries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">pad</span>      <span class="n">array</span>      <span class="n">pad</span>
+<span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="o">|</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+<section id="multilevel-dwt-coefficient-handling">
+<h3><a class="toc-backref" href="#id6">Multilevel DWT Coefficient Handling</a><a class="headerlink" href="#multilevel-dwt-coefficient-handling" title="Permalink to this heading">#</a></h3>
+<p>New routines to convert the coefficients returned by multilevel DWT routines
+to and from a single n-dimensional array have been added.
+<code class="docutils literal notranslate"><span class="pre">pywt.coeffs_to_array</span></code> concatenates the output of <code class="docutils literal notranslate"><span class="pre">wavedec</span></code>, <code class="docutils literal notranslate"><span class="pre">wavedec2</span></code>
+or <code class="docutils literal notranslate"><span class="pre">wavedecn</span></code> into a single numpy array.  <code class="docutils literal notranslate"><span class="pre">pywt.array_to_coeffs</span></code> can be
+used to transform back from a single coefficient array to a format appropriate
+for <code class="docutils literal notranslate"><span class="pre">waverec</span></code>, <code class="docutils literal notranslate"><span class="pre">waverec2</span></code> or <code class="docutils literal notranslate"><span class="pre">waverecn</span></code>.</p>
+</section>
+<section id="more-c-function-calls-release-the-gil">
+<h3><a class="toc-backref" href="#id7">More C function calls release the GIL</a><a class="headerlink" href="#more-c-function-calls-release-the-gil" title="Permalink to this heading">#</a></h3>
+<p>Cython code calling the wavelet filtering routines (DWT and SWT) now releases
+the global interpreter lock (GIL) where possible.  A potential use case is in
+speeding up the batch computation of several large DWTs using multi-threading
+(e.g. via concurrent.futures).</p>
+</section>
+<section id="multilevel-wavelet-transforms-along-specific-axes">
+<h3><a class="toc-backref" href="#id8">Multilevel wavelet transforms along specific axes</a><a class="headerlink" href="#multilevel-wavelet-transforms-along-specific-axes" title="Permalink to this heading">#</a></h3>
+<p>The axis specific transform support introduced in the prior release was
+extended to the multilevel DWT transforms.  All <code class="docutils literal notranslate"><span class="pre">wavedec*</span></code> and <code class="docutils literal notranslate"><span class="pre">waverec*</span></code>
+routines have a new <cite>axis</cite> (1D) or <cite>axes</cite> (2D, nD) keyword argument.  If
+unspecified the default behaviour is to transform all axes of the input.</p>
+</section>
+<section id="faster-multilevel-stationary-wavelet-transforms">
+<h3><a class="toc-backref" href="#id9">Faster multilevel stationary wavelet transforms</a><a class="headerlink" href="#faster-multilevel-stationary-wavelet-transforms" title="Permalink to this heading">#</a></h3>
+<p>Stationary wavelet transforms are now faster when the number of levels is
+greater than one.  The improvement can be very large (multiple orders of
+magnitude) for transforms with a large number of levels.</p>
+</section>
+</section>
+<section id="deprecated-features">
+<h2><a class="toc-backref" href="#id10">Deprecated features</a><a class="headerlink" href="#deprecated-features" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="backwards-incompatible-changes">
+<h2><a class="toc-backref" href="#id11">Backwards incompatible changes</a><a class="headerlink" href="#backwards-incompatible-changes" title="Permalink to this heading">#</a></h2>
+<p>A FutureWarning was added to <code class="docutils literal notranslate"><span class="pre">swt2</span></code> and <code class="docutils literal notranslate"><span class="pre">iswt2</span></code> to warn about a pending
+backwards incompatible change to the order of the coefficients in the list
+returned by these routines.  The actual change will not occur until the next
+release. Transform coefficients will be returned in descending rather than
+ascending order.  This change is being made for consistency with all other
+existing multi-level transforms in PyWavelets.</p>
+</section>
+<section id="bugs-fixed">
+<h2><a class="toc-backref" href="#id12">Bugs Fixed</a><a class="headerlink" href="#bugs-fixed" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">demo/image_blender.py</span></code> was updated to support the new api of Pillow 3.x</p>
+<p>A bug related to size of assumed <code class="docutils literal notranslate"><span class="pre">size_t</span></code> on some platforms/compilers
+(e.g. Windows with mingw64) was fixed.</p>
+<p>Fix to memory leak in <code class="docutils literal notranslate"><span class="pre">(i)dwt_axis</span></code></p>
+<p>Fix to a performance regression in <code class="docutils literal notranslate"><span class="pre">idwt</span></code> and <code class="docutils literal notranslate"><span class="pre">iswt</span></code> that was introduced
+in v0.4.0.</p>
+<p>Fixed a bug in <code class="docutils literal notranslate"><span class="pre">dwtn</span></code> and <code class="docutils literal notranslate"><span class="pre">idwtn</span></code> for data with complex dtype when
+<code class="docutils literal notranslate"><span class="pre">axes</span> <span class="pre">!=</span> <span class="pre">None</span></code>.</p>
+</section>
+<section id="other-changes">
+<h2><a class="toc-backref" href="#id13">Other changes</a><a class="headerlink" href="#other-changes" title="Permalink to this heading">#</a></h2>
+<p>The minimum supported numpy version has been increased to 1.9.1.</p>
+<p>Test coverage (including for the Cython and C code) via
+<a class="reference external" href="https://codecov.io/">Codecov</a> was added and the overall test coverage has
+been improved.</p>
+<p>A substantial overhaul of the C extension code has been performed.  Custom
+templating is no longer used.  The intention is to make this code easier to
+maintain and expand in the future.</p>
+<p>The Cython code has been split out into a multiple files to hopefully make
+relevant portions of the wrappers easier to find for future developers.</p>
+<p><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> now relies on setuptools in all cases (rather than distutils).</p>
+</section>
+<section id="authors">
+<h2><a class="toc-backref" href="#id14">Authors</a><a class="headerlink" href="#authors" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Jonathan Dan +</p></li>
+<li><p>Ralf Gommers</p></li>
+<li><p>David Menéndez Hurtado</p></li>
+<li><p>Gregory R. Lee</p></li>
+<li><p>Holger Nahrstaedt +</p></li>
+<li><p>Daniel M. Pelt +</p></li>
+<li><p>Alexandre Saint +</p></li>
+<li><p>Scott Sievert +</p></li>
+<li><p>Kai Wohlfahrt</p></li>
+<li><p>Frank Yu +</p></li>
+</ul>
+<p>A total of 10 people contributed to this release.
+People with a “+” by their names contributed a patch for the first time.
+This list of names is automatically generated, and may not be fully complete.</p>
+<section id="issues-closed-for-v0-5-0">
+<h3><a class="toc-backref" href="#id15">Issues closed for v0.5.0</a><a class="headerlink" href="#issues-closed-for-v0-5-0" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/48">#48</a>: Continuous wavelet transform?</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/127">#127</a>: Reorganize _pywt</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/160">#160</a>: Appveyor failing on recent PRs</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/163">#163</a>: Set up coveralls</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/166">#166</a>: Wavelet coefficients to single array (and vice versa?)</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/177">#177</a>: Fail to install pywt due to the use of index_t which conflict with the definition in /usr/include/sys/types.h on smartos system(open solaris like system)</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/180">#180</a>: Memory leak</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/187">#187</a>: ‘reflect’ signal extension mode</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/189">#189</a>: bump minimum numpy version?</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/191">#191</a>: Upgrade removed Pillow methods</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/196">#196</a>: building in-place for development.</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/200">#200</a>: swt implementation is considerably slower than MATLAB</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/209">#209</a>: broken doctests</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/210">#210</a>: Run doctests in CI setup</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/211">#211</a>: Typo in iswt documentation</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/217">#217</a>: <cite>blank_discrete_wavelet</cite> does not properly initialize some properties</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/issues/231">#231</a>: I can’t compile pywt</p></li>
+</ul>
+</section>
+<section id="pull-requests-for-v0-5-0">
+<h3><a class="toc-backref" href="#id16">Pull requests for v0.5.0</a><a class="headerlink" href="#pull-requests-for-v0-5-0" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/148">#148</a>: Reorganize C v2</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/161">#161</a>: Remove numpy distutils</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/162">#162</a>: fix: iswt/idwt performance regression</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/164">#164</a>: Improved coefficients for db and coif</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/167">#167</a>: Add coverage (codecov.io)</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/168">#168</a>: convert transform coefficients to and from a single n-dimensional array</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/169">#169</a>: Remove templating</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/170">#170</a>: :Always install new pip on Appveyor</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/172">#172</a>: Adding of missing wavelets from the matlab list</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/178">#178</a>: use Index_t instead of index_t</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/179">#179</a>: add axis/axes support to multilevel discrete wavelet transforms</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/181">#181</a>: Fix memory leak</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/182">#182</a>: improve test coverage for _multidim.py and _multilevel.py</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/183">#183</a>: improve coverage for _dwt.py</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/184">#184</a>: fix corner case in coeffs_to_array</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/188">#188</a>: Drop GIL in c_wt calls</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/190">#190</a>: bump minimum numpy to 1.9</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/192">#192</a>: Upgrade to Pillow&gt;=3 api</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/193">#193</a>: ENH: add ‘reflect’ extension mode</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/197">#197</a>: BLD: fix “python setup.py develop”. Closes gh-196</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/198">#198</a>: Choose clz* based on SIZE_MAX</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/201">#201</a>: speedup multi-level swt</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/205">#205</a>: fix dwtn/idwtn with axes != None and complex data</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/206">#206</a>:  DOC: correct typo in iswt docstring</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/207">#207</a>:  minor documentation updates</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/208">#208</a>: document coeff_to_array and array_to_coeff</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/214">#214</a>: FIX: update several doctests to reflect the new wavelets added</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/218">#218</a>: FIX: initialize all properties of a blank discrete wavelet</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/219">#219</a>: document coordinate conventions for 2D DWT routines.</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/220">#220</a>: Run doctests on TravisCI</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/221">#221</a>: Documentation for cwt and ContinuousWavelet</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/222">#222</a>: consistent use of double backticks in docs</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/223">#223</a>: add FutureWarning about swt2 coefficient order</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/224">#224</a>: n-dimensional stationary wavelet transform (swtn) and axis support in swt, swt2</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/225">#225</a>: BUG: fix breakage on 32-bit Python.</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/226">#226</a>: DOC: update Copyright statements.</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/227">#227</a>: ENH: add kind keyword to wavelist()</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/228">#228</a>: MAINT: avoid using a builtin as variable name in qmf().</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/229">#229</a>: DOC: add swtn, iswt, iswt2 to the API documentation</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/230">#230</a>: add demo of batch processing via concurrent.futures</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/234">#234</a>: ENH: coeffs_to_array supports axes argument as recently added to wavedec*</p></li>
+<li><p><a class="reference external" href="https://github.com/PyWavelets/pywt/pull/236">#236</a>: BLD: raise an ImportError if Cython should be installed but isn’t.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="release.0.5.1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyWavelets 0.5.1 Release Notes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="release.0.4.0.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyWavelets 0.4.0 Release Notes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New features</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-continuous-wavelet-transforms">1D Continuous Wavelet Transforms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-discrete-wavelets">New discrete wavelets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-extension-mode-reflect">New extension mode: reflect</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-dwt-coefficient-handling">Multilevel DWT Coefficient Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-c-function-calls-release-the-gil">More C function calls release the GIL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-wavelet-transforms-along-specific-axes">Multilevel wavelet transforms along specific axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faster-multilevel-stationary-wavelet-transforms">Faster multilevel stationary wavelet transforms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecated-features">Deprecated features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backwards-incompatible-changes">Backwards incompatible changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bugs-fixed">Bugs Fixed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-changes">Other changes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#issues-closed-for-v0-5-0">Issues closed for v0.5.0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests-for-v0-5-0">Pull requests for v0.5.0</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/PyWavelets/pywt/edit/main/doc/source/release.0.5.0.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2006-2024, The PyWavelets Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

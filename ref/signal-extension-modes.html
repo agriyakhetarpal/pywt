@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Signal extension modes &#8212; PyWavelets Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/jupyterlite_sphinx.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/signal-extension-modes';</script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within PyWavelets Documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Discrete Wavelet Transform (DWT)" href="dwt-discrete-wavelet-transform.html" />
+    <link rel="prev" title="Wavelets" href="wavelets.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 03, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">PyWavelets Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wavelets.html">Wavelets</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Signal extension modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-discrete-wavelet-transform.html">Discrete Wavelet Transform (DWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="idwt-inverse-discrete-wavelet-transform.html">Inverse Discrete Wavelet Transform (IDWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-decompositions-overview.html">Overview of multilevel wavelet decompositions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-dwt-and-idwt.html">2D Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nd-dwt-and-idwt.html">nD Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-coefficient-handling.html">Handling DWT Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swt-stationary-wavelet-transform.html">Stationary Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iswt-inverse-stationary-wavelet-transform.html">Inverse Stationary Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mra.html">Multiresolution Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelet-packets.html">Wavelet Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cwt.html">Continuous Wavelet Transform (CWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thresholding-functions.html">Thresholding functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-functions.html">Other functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Signal...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="signal-extension-modes">
+<span id="ref-modes"></span><h1>Signal extension modes<a class="headerlink" href="#signal-extension-modes" title="Permalink to this heading">#</a></h1>
+<p id="modes">Because the most common and practical way of representing digital signals
+in computer science is with finite arrays of values, some extrapolation
+of the input data has to be performed in order to extend the signal before
+computing the <a class="reference internal" href="dwt-discrete-wavelet-transform.html#ref-dwt"><span class="std std-ref">Discrete Wavelet Transform</span></a> using the cascading
+filter banks algorithm.</p>
+<p>Depending on the extrapolation method, significant artifacts at the signal’s
+borders can be introduced during that process, which in turn may lead to
+inaccurate computations of the <a class="reference internal" href="dwt-discrete-wavelet-transform.html#ref-dwt"><span class="std std-ref">DWT</span></a> at the signal’s ends.</p>
+<p>PyWavelets provides several methods of signal extrapolation that can be used to
+minimize this negative effect:</p>
+<ul id="modes-zero">
+<li><p><code class="docutils literal notranslate"><span class="pre">zero</span></code> - <strong>zero-padding</strong> - signal is extended by adding zero samples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="mi">0</span>  <span class="mi">0</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="mi">0</span>  <span class="mi">0</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ul id="modes-constant">
+<li><p><code class="docutils literal notranslate"><span class="pre">constant</span></code> - <strong>constant-padding</strong> - border values are replicated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="n">x1</span> <span class="n">x1</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="n">xn</span> <span class="n">xn</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ul id="modes-symmetric">
+<li><p><code class="docutils literal notranslate"><span class="pre">symmetric</span></code> - <strong>symmetric-padding</strong> - signal is extended by <em>mirroring</em>
+samples. This mode is also known as half-sample symmetric.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="n">x2</span> <span class="n">x1</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="n">xn</span> <span class="n">xn</span><span class="o">-</span><span class="mi">1</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ul id="modes-reflect">
+<li><p><code class="docutils literal notranslate"><span class="pre">reflect</span></code> - <strong>reflect-padding</strong> - signal is extended by <em>reflecting</em>
+samples. This mode is also known as whole-sample symmetric.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="n">x3</span> <span class="n">x2</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="n">xn</span><span class="o">-</span><span class="mi">1</span> <span class="n">xn</span><span class="o">-</span><span class="mi">2</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<span id="modes-periodic"></span><ul id="periodic-padding">
+<li><p><code class="docutils literal notranslate"><span class="pre">periodic</span></code> - <strong>periodic-padding</strong> - signal is treated as a periodic one:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="n">xn</span><span class="o">-</span><span class="mi">1</span> <span class="n">xn</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ul class="simple" id="modes-smooth">
+<li><p><code class="docutils literal notranslate"><span class="pre">smooth</span></code> - <strong>smooth-padding</strong> - signal is extended according to the first
+derivatives calculated on the edges (straight line)</p></li>
+</ul>
+<ul id="modes-antisymmetric">
+<li><p><code class="docutils literal notranslate"><span class="pre">antisymmetric</span></code> - <strong>anti-symmetric padding</strong> - signal is extended by
+<em>mirroring</em> and negating samples. This mode is also known as half-sample
+anti-symmetric:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="o">-</span><span class="n">x2</span> <span class="o">-</span><span class="n">x1</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="o">-</span><span class="n">xn</span> <span class="o">-</span><span class="n">xn</span><span class="o">-</span><span class="mi">1</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ul id="modes-antireflect">
+<li><p><code class="docutils literal notranslate"><span class="pre">antireflect</span></code> - <strong>anti-symmetric-reflect padding</strong> - signal is extended by
+<em>reflecting</em> anti-symmetrically about the edge samples. This mode is also
+known as whole-sample anti-symmetric:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x3</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">|</span> <span class="n">x1</span> <span class="n">x2</span> <span class="o">...</span> <span class="n">xn</span> <span class="o">|</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">xn</span> <span class="o">-</span> <span class="n">xn</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">xn</span> <span class="o">-</span> <span class="n">xn</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><a class="reference internal" href="dwt-discrete-wavelet-transform.html#ref-dwt"><span class="std std-ref">DWT</span></a> performed for these extension modes is slightly redundant, but ensures
+perfect reconstruction. To receive the smallest possible number of coefficients,
+computations can be performed with the <a class="reference internal" href="#periodization">periodization</a> mode:</p>
+<span id="periodization"></span><ul class="simple" id="modes-periodization">
+<li><p><code class="docutils literal notranslate"><span class="pre">periodization</span></code> - <strong>periodization</strong> - is like <a class="reference internal" href="#periodic-padding">periodic-padding</a> but gives the
+smallest possible number of decomposition coefficients. <a class="reference internal" href="idwt-inverse-discrete-wavelet-transform.html#ref-idwt"><span class="std std-ref">IDWT</span></a> must be
+performed with the same mode.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="try_examples_outer_container docutils container" id="122e4498-9c4a-4c71-bb6b-80750383e2ac">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('122e4498-9c4a-4c71-bb6b-80750383e2ac','dc6f91b0-47ae-4596-ba1f-51aaa17ade2b','5f442a0d-809c-47df-8b14-94fdcaf0e022','../lite/tree/../notebooks/?path=5dd25a2c_27bc_4470_9913_5e7c74f07229.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pywt</span><span class="o">.</span><span class="n">Modes</span><span class="o">.</span><span class="n">modes</span><span class="p">)</span>
+<span class="go">[&#39;zero&#39;, &#39;constant&#39;, &#39;symmetric&#39;, &#39;periodic&#39;, &#39;smooth&#39;, &#39;periodization&#39;, &#39;reflect&#39;, &#39;antisymmetric&#39;, &#39;antireflect&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="5f442a0d-809c-47df-8b14-94fdcaf0e022" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('122e4498-9c4a-4c71-bb6b-80750383e2ac','5f442a0d-809c-47df-8b14-94fdcaf0e022')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('122e4498-9c4a-4c71-bb6b-80750383e2ac','5f442a0d-809c-47df-8b14-94fdcaf0e022')">Open In Tab</button></div><div id="dc6f91b0-47ae-4596-ba1f-51aaa17ade2b" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>The following figure illustrates how a short signal (red) gets extended (black)
+outside of its original extent. Note that periodization first extends the
+signal to an even length prior to using periodic boundary conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A visual illustration of the various signal extension modes supported in</span>
+<span class="sd">PyWavelets. For efficiency, in the C routines the array is not actually</span>
+<span class="sd">extended as is done here. This is just a demo for easier visual explanation of</span>
+<span class="sd">the behavior of the various boundary modes.</span>
+
+<span class="sd">In practice, which signal extension mode is beneficial will depend on the</span>
+<span class="sd">signal characteristics.  For this particular signal, some modes such as</span>
+<span class="sd">&quot;periodic&quot;,  &quot;antisymmetric&quot; and &quot;zero&quot; result in large discontinuities that</span>
+<span class="sd">would lead to large amplitude boundary coefficients in the detail coefficients</span>
+<span class="sd">of a discrete wavelet transform.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">pywt._doc_utils</span> <span class="kn">import</span> <span class="n">boundary_mode_subplot</span>
+
+<span class="c1"># synthetic test signal</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Create a figure with one subplots per boundary mode</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;symmetric&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;reflect&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;periodic&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;antisymmetric&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;antireflect&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;periodization&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;smooth&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundary_mode_subplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">symw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/plot_boundary_modes.png" class="plot-directive" src="../_images/plot_boundary_modes.png" />
+</figure>
+<p>Notice that you can use any of the following ways of passing wavelet and mode
+parameters:</p>
+<div class="try_examples_outer_container docutils container" id="bbabbcd9-4850-4b7f-8862-9abf3ca7a868">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('bbabbcd9-4850-4b7f-8862-9abf3ca7a868','1622a4a4-e4a6-4f25-ad98-b7f9e52ffd0c','7408e106-812b-480b-9f04-f12f20b04625','../lite/tree/../notebooks/?path=8f56daa7_b3ad_4d9f_8bcd_0f9ba8aa28fa.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">dwt</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;db2&#39;</span><span class="p">,</span> <span class="s1">&#39;smooth&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">dwt</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">pywt</span><span class="o">.</span><span class="n">Wavelet</span><span class="p">(</span><span class="s1">&#39;db2&#39;</span><span class="p">),</span> <span class="n">pywt</span><span class="o">.</span><span class="n">Modes</span><span class="o">.</span><span class="n">smooth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="7408e106-812b-480b-9f04-f12f20b04625" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('bbabbcd9-4850-4b7f-8862-9abf3ca7a868','7408e106-812b-480b-9f04-f12f20b04625')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('bbabbcd9-4850-4b7f-8862-9abf3ca7a868','7408e106-812b-480b-9f04-f12f20b04625')">Open In Tab</button></div><div id="1622a4a4-e4a6-4f25-ad98-b7f9e52ffd0c" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Extending data in context of PyWavelets does not mean reallocation of the
+data in the computer’s physical memory and copying values, but rather
+computing the extra values only when they are needed.
+This feature saves extra memory and CPU resources and helps to avoid page
+swapping when handling relatively big data arrays on computers with low
+physical memory.</p>
+</div>
+<section id="naming-conventions">
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading">#</a></h2>
+<p>The correspondence between PyWavelets edge modes and the extension modes
+available in Matlab’s dwtmode and numpy’s pad are tabulated here for reference.</p>
+<table class="table">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 22%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>PyWavelets</strong></p></th>
+<th class="head"><p><strong>Matlab</strong></p></th>
+<th class="head"><p><strong>numpy.pad</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>symmetric</p></td>
+<td><p>sym, symh</p></td>
+<td><p>symmetric</p></td>
+</tr>
+<tr class="row-odd"><td><p>reflect</p></td>
+<td><p>symw</p></td>
+<td><p>reflect</p></td>
+</tr>
+<tr class="row-even"><td><p>smooth</p></td>
+<td><p>spd, sp1</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>constant</p></td>
+<td><p>sp0</p></td>
+<td><p>edge</p></td>
+</tr>
+<tr class="row-even"><td><p>zero</p></td>
+<td><p>zpd</p></td>
+<td><p>constant, cval=0</p></td>
+</tr>
+<tr class="row-odd"><td><p>periodic</p></td>
+<td><p>ppd</p></td>
+<td><p>wrap</p></td>
+</tr>
+<tr class="row-even"><td><p>periodization</p></td>
+<td><p>per</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>antisymmetric</p></td>
+<td><p>asym, asymh</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>antireflect</p></td>
+<td><p>asymw</p></td>
+<td><p>reflect, reflect_type=’odd’</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="padding-using-pywavelets-signal-extension-modes-pad">
+<h2>Padding using PyWavelets Signal Extension Modes - <code class="docutils literal notranslate"><span class="pre">pad</span></code><a class="headerlink" href="#padding-using-pywavelets-signal-extension-modes-pad" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.pad">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.pad" title="Permalink to this definition">#</a></dt>
+<dd><p>Extend a 1D signal using a given boundary mode.</p>
+<p>This function operates like <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v2.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.pad()</span></code></a> but supports all signal
+extension modes that can be used by PyWavelets discrete wavelet transforms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">ndarray</span></dt><dd><p>The array to pad</p>
+</dd>
+<dt><strong>pad_widths</strong><span class="classifier">{sequence, array_like, int}</span></dt><dd><p>Number of values padded to the edges of each axis.
+<code class="docutils literal notranslate"><span class="pre">((before_1,</span> <span class="pre">after_1),</span> <span class="pre">…</span> <span class="pre">(before_N,</span> <span class="pre">after_N))</span></code> unique pad widths for
+each axis. <code class="docutils literal notranslate"><span class="pre">((before,</span> <span class="pre">after),)</span></code> yields same before and after pad for
+each axis. <code class="docutils literal notranslate"><span class="pre">(pad,)</span></code> or int is a shortcut for
+<code class="docutils literal notranslate"><span class="pre">before</span> <span class="pre">=</span> <span class="pre">after</span> <span class="pre">=</span> <span class="pre">pad</span> <span class="pre">width</span></code> for all axes.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">str, optional</span></dt><dd><p>Signal extension mode, see <a class="reference internal" href="#ref-modes"><span class="std std-ref">Modes</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>pad</strong><span class="classifier">ndarray</span></dt><dd><p>Padded array of rank equal to array with shape increased according to
+<code class="docutils literal notranslate"><span class="pre">pad_widths</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The performance of padding in dimensions &gt; 1 may be substantially slower
+for modes <code class="docutils literal notranslate"><span class="pre">'smooth'</span></code> and <code class="docutils literal notranslate"><span class="pre">'antisymmetric'</span></code> as these modes are not
+supported efficiently by the underlying <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v2.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.pad()</span></code></a> function.</p>
+<p>Note that the behavior of the <code class="docutils literal notranslate"><span class="pre">'constant'</span></code> mode here follows the
+PyWavelets convention which is different from NumPy (it is equivalent to
+<code class="docutils literal notranslate"><span class="pre">mode='edge'</span></code> in <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v2.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.pad()</span></code></a>).</p>
+</dd></dl>
+
+<p>Pywavelets provides a function, <a class="reference internal" href="#pywt.pad" title="pywt.pad"><code class="xref py py-func docutils literal notranslate"><span class="pre">pad()</span></code></a>, that operates like
+<a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.pad.html#numpy.pad" title="(in NumPy v2.1.dev0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.pad()</span></code></a>, but supports the PyWavelets signal extension modes
+discussed above. For efficiency, the DWT routines in PyWavelets do not
+expclitly create padded signals using this function. It can be used to manually
+prepad signals to reduce boundary effects in functions such as <a class="reference internal" href="cwt.html#pywt.cwt" title="pywt.cwt"><code class="xref py py-func docutils literal notranslate"><span class="pre">cwt()</span></code></a> and
+<a class="reference internal" href="swt-stationary-wavelet-transform.html#pywt.swt" title="pywt.swt"><code class="xref py py-func docutils literal notranslate"><span class="pre">swt()</span></code></a> that do not currently support all of these signal extension modes.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="wavelets.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Wavelets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dwt-discrete-wavelet-transform.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Discrete Wavelet Transform (DWT)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-conventions">Naming Conventions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#padding-using-pywavelets-signal-extension-modes-pad">Padding using PyWavelets Signal Extension Modes - <code class="docutils literal notranslate"><span class="pre">pad</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.pad"><code class="docutils literal notranslate"><span class="pre">pad()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/PyWavelets/pywt/edit/main/doc/source/ref/signal-extension-modes.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2006-2024, The PyWavelets Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,980 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Multiresolution Analysis &#8212; PyWavelets Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/jupyterlite_sphinx.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ref/mra';</script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within PyWavelets Documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wavelet Packets" href="wavelet-packets.html" />
+    <link rel="prev" title="Inverse Stationary Wavelet Transform" href="iswt-inverse-stationary-wavelet-transform.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Apr 03, 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">PyWavelets Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../install.html">
+                        Installing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../regression/index.html">
+                        Usage examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../dev/index.html">
+                        Development guide
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/PyWavelets/pywt" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://groups.google.com/group/pywavelets" title="Discussion group on Google Groups" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-regular fa-comments fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Discussion group on Google Groups</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="http://wavelets.pybytes.com/" title="Explore PyWavelets" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-wave-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Explore PyWavelets</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="wavelets.html">Wavelets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal-extension-modes.html">Signal extension modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-discrete-wavelet-transform.html">Discrete Wavelet Transform (DWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="idwt-inverse-discrete-wavelet-transform.html">Inverse Discrete Wavelet Transform (IDWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-decompositions-overview.html">Overview of multilevel wavelet decompositions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d-dwt-and-idwt.html">2D Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nd-dwt-and-idwt.html">nD Forward and Inverse Discrete Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dwt-coefficient-handling.html">Handling DWT Coefficients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swt-stationary-wavelet-transform.html">Stationary Wavelet Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iswt-inverse-stationary-wavelet-transform.html">Inverse Stationary Wavelet Transform</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multiresolution Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wavelet-packets.html">Wavelet Packets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cwt.html">Continuous Wavelet Transform (CWT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thresholding-functions.html">Thresholding functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-functions.html">Other functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Multiresolut...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="multiresolution-analysis">
+<span id="ref-mra"></span><h1>Multiresolution Analysis<a class="headerlink" href="#multiresolution-analysis" title="Permalink to this heading">#</a></h1>
+<p>The functions in this module can be used to project a signal onto wavelet
+subspaces and an approximation subspace. This is an additive decomposition such
+that the sum of the coefficients equals the original signal. The projected
+signal coefficients remains temporally aligned with the original, regardless
+of the symmetry of the wavelet used for the analysis.</p>
+<section id="multilevel-1d-mra">
+<h2>Multilevel 1D <code class="docutils literal notranslate"><span class="pre">mra</span></code><a class="headerlink" href="#multilevel-1d-mra" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.mra">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">mra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'swt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'periodization'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.mra" title="Permalink to this definition">#</a></dt>
+<dd><p>Forward 1D multiresolution analysis.</p>
+<p>It is a projection onto the wavelet subspaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data: array_like</strong></dt><dd><p>Input data</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name string</span></dt><dd><p>Wavelet to use</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">int, optional</span></dt><dd><p>Decomposition level (must be &gt;= 0). If level is None (default) then it
+will be calculated using the <cite>dwt_max_level</cite> function.</p>
+</dd>
+<dt><strong>axis: int, optional</strong></dt><dd><p>Axis over which to compute the DWT. If not given, the last axis is
+used. Currently only available when <code class="docutils literal notranslate"><span class="pre">transform='dwt'</span></code>.</p>
+</dd>
+<dt><strong>transform</strong><span class="classifier">{‘dwt’, ‘swt’}</span></dt><dd><p>Whether to use the DWT or SWT for the transforms.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">str, optional</span></dt><dd><p>Signal extension mode, see <cite>Modes</cite> (default: ‘symmetric’). This option
+is only used when transform=’dwt’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>[cAn, {details_level_n}, … {details_level_1}]</strong><span class="classifier">list</span></dt><dd><p>For more information, see the detailed description in <cite>wavedec</cite></p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pywt.imra" title="pywt.imra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imra</span></code></a>, <a class="reference internal" href="swt-stationary-wavelet-transform.html#pywt.swt" title="pywt.swt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swt</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This is sometimes referred to as an additive decomposition because the
+inverse transform (<code class="docutils literal notranslate"><span class="pre">imra</span></code>) is just the sum of the coefficient arrays
+<a class="reference internal" href="#r0b9955819a36-1" id="id1">[1]</a>. The decomposition using <code class="docutils literal notranslate"><span class="pre">transform='dwt'</span></code> corresponds to section
+2.2 while that using an undecimated transform (<code class="docutils literal notranslate"><span class="pre">transform='swt'</span></code>) is
+described in section 3.2 and appendix A.</p>
+<p>This transform does not share the variance partition property of <code class="docutils literal notranslate"><span class="pre">swt</span></code>
+with <cite>norm=True</cite>. It does however, result in coefficients that are
+temporally aligned regardless of the symmetry of the wavelet used.</p>
+<p>The redundancy of this transform is <code class="docutils literal notranslate"><span class="pre">(level</span> <span class="pre">+</span> <span class="pre">1)</span></code>.</p>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r0b9955819a36-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Donald B. Percival and Harold O. Mofjeld. Analysis of Subtidal
+Coastal Sea Level Fluctuations Using Wavelets. Journal of the American
+Statistical Association Vol. 92, No. 439 (Sep., 1997), pp. 868-880.
+<a class="reference external" href="https://doi.org/10.2307/2965551">https://doi.org/10.2307/2965551</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="multilevel-2d-mra2">
+<h2>Multilevel 2D <code class="docutils literal notranslate"><span class="pre">mra2</span></code><a class="headerlink" href="#multilevel-2d-mra2" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.mra2">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">mra2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-2,</span> <span class="pre">-1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'swt2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'periodization'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.mra2" title="Permalink to this definition">#</a></dt>
+<dd><p>Forward 2D multiresolution analysis.</p>
+<p>It is a projection onto wavelet subspaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data: array_like</strong></dt><dd><p>Input data</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name string, or 2-tuple of wavelets</span></dt><dd><p>Wavelet to use.  This can also be a tuple containing a wavelet to
+apply along each axis in <cite>axes</cite>.</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">int, optional</span></dt><dd><p>Decomposition level (must be &gt;= 0). If level is None (default) then it
+will be calculated using the <cite>dwt_max_level</cite> function.</p>
+</dd>
+<dt><strong>axes</strong><span class="classifier">2-tuple of ints, optional</span></dt><dd><p>Axes over which to compute the DWT. Repeated elements are not allowed.
+Currently only available when <code class="docutils literal notranslate"><span class="pre">transform='dwt2'</span></code>.</p>
+</dd>
+<dt><strong>transform</strong><span class="classifier">{‘dwt2’, ‘swt2’}</span></dt><dd><p>Whether to use the DWT or SWT for the transforms.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">str or 2-tuple of str, optional</span></dt><dd><p>Signal extension mode, see <cite>Modes</cite> (default: ‘symmetric’). This option
+is only used when transform=’dwt2’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>coeffs</strong><span class="classifier">list</span></dt><dd><p>For more information, see the detailed description in <cite>wavedec2</cite></p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pywt.imra2" title="pywt.imra2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imra2</span></code></a>, <a class="reference internal" href="swt-stationary-wavelet-transform.html#pywt.swt2" title="pywt.swt2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swt2</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This is sometimes referred to as an additive decomposition because the
+inverse transform (<code class="docutils literal notranslate"><span class="pre">imra2</span></code>) is just the sum of the coefficient arrays
+<a class="reference internal" href="#rf69e6d03d9a4-1" id="id3">[1]</a>. The decomposition using <code class="docutils literal notranslate"><span class="pre">transform='dwt'</span></code> corresponds to section
+2.2 while that using an undecimated transform (<code class="docutils literal notranslate"><span class="pre">transform='swt'</span></code>) is
+described in section 3.2 and appendix A.</p>
+<p>This transform does not share the variance partition property of <code class="docutils literal notranslate"><span class="pre">swt2</span></code>
+with <cite>norm=True</cite>. It does however, result in coefficients that are
+temporally aligned regardless of the symmetry of the wavelet used.</p>
+<p>The redundancy of this transform is <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">level</span> <span class="pre">+</span> <span class="pre">1</span></code>.</p>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="rf69e6d03d9a4-1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p>Donald B. Percival and Harold O. Mofjeld. Analysis of Subtidal
+Coastal Sea Level Fluctuations Using Wavelets. Journal of the American
+Statistical Association Vol. 92, No. 439 (Sep., 1997), pp. 868-880.
+<a class="reference external" href="https://doi.org/10.2307/2965551">https://doi.org/10.2307/2965551</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="multilevel-n-dimensional-mran">
+<h2>Multilevel n-dimensional <code class="docutils literal notranslate"><span class="pre">mran</span></code><a class="headerlink" href="#multilevel-n-dimensional-mran" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.mran">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">mran</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'swtn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'periodization'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.mran" title="Permalink to this definition">#</a></dt>
+<dd><p>Forward nD multiresolution analysis.</p>
+<p>It is a projection onto the wavelet subspaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data: array_like</strong></dt><dd><p>Input data</p>
+</dd>
+<dt><strong>wavelet</strong><span class="classifier">Wavelet object or name string, or tuple of wavelets</span></dt><dd><p>Wavelet to use. This can also be a tuple containing a wavelet to
+apply along each axis in <cite>axes</cite>.</p>
+</dd>
+<dt><strong>level</strong><span class="classifier">int, optional</span></dt><dd><p>Decomposition level (must be &gt;= 0). If level is None (default) then it
+will be calculated using the <cite>dwt_max_level</cite> function.</p>
+</dd>
+<dt><strong>axes</strong><span class="classifier">tuple of ints, optional</span></dt><dd><p>Axes over which to compute the DWT. Repeated elements are not allowed.</p>
+</dd>
+<dt><strong>transform</strong><span class="classifier">{‘dwtn’, ‘swtn’}</span></dt><dd><p>Whether to use the DWT or SWT for the transforms.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">str or tuple of str, optional</span></dt><dd><p>Signal extension mode, see <cite>Modes</cite> (default: ‘symmetric’). This option
+is only used when transform=’dwtn’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>coeffs</strong><span class="classifier">list</span></dt><dd><p>For more information, see the detailed description in <cite>wavedecn</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pywt.imran" title="pywt.imran"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imran</span></code></a>, <a class="reference internal" href="swt-stationary-wavelet-transform.html#pywt.swtn" title="pywt.swtn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swtn</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This is sometimes referred to as an additive decomposition because the
+inverse transform (<code class="docutils literal notranslate"><span class="pre">imran</span></code>) is just the sum of the coefficient arrays
+<a class="reference internal" href="#r4066b3c7fa02-1" id="id5">[1]</a>. The decomposition using <code class="docutils literal notranslate"><span class="pre">transform='dwt'</span></code> corresponds to section
+2.2 while that using an undecimated transform (<code class="docutils literal notranslate"><span class="pre">transform='swt'</span></code>) is
+described in section 3.2 and appendix A.</p>
+<p>This transform does not share the variance partition property of <code class="docutils literal notranslate"><span class="pre">swtn</span></code>
+with <cite>norm=True</cite>. It does however, result in coefficients that are
+temporally aligned regardless of the symmetry of the wavelet used.</p>
+<p>The redundancy of this transform is <code class="docutils literal notranslate"><span class="pre">(2**n</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">*</span> <span class="pre">level</span> <span class="pre">+</span> <span class="pre">1</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span></code>
+corresponds to the number of axes transformed.</p>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r4066b3c7fa02-1"><span class="brackets"><a class="fn-backref" href="#id5">1</a></span></dt>
+<dd><p>Donald B. Percival and Harold O. Mofjeld. Analysis of Subtidal
+Coastal Sea Level Fluctuations Using Wavelets. Journal of the American
+Statistical Association Vol. 92, No. 439 (Sep., 1997), pp. 868-880.
+<a class="reference external" href="https://doi.org/10.2307/2965551">https://doi.org/10.2307/2965551</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="inverse-multilevel-1d-imra">
+<h2>Inverse Multilevel 1D <code class="docutils literal notranslate"><span class="pre">imra</span></code><a class="headerlink" href="#inverse-multilevel-1d-imra" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.imra">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">imra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mra_coeffs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.imra" title="Permalink to this definition">#</a></dt>
+<dd><p>Inverse 1D multiresolution analysis via summation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mra_coeffs</strong><span class="classifier">list of ndarray</span></dt><dd><p>Multiresolution analysis coefficients as returned by <cite>mra</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rec</strong><span class="classifier">ndarray</span></dt><dd><p>The reconstructed signal.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pywt.mra" title="pywt.mra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mra</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="rade429b33d72-1"><span class="brackets">1</span></dt>
+<dd><p>Donald B. Percival and Harold O. Mofjeld. Analysis of Subtidal
+Coastal Sea Level Fluctuations Using Wavelets. Journal of the American
+Statistical Association Vol. 92, No. 439 (Sep., 1997), pp. 868-880.
+<a class="reference external" href="https://doi.org/10.2307/2965551">https://doi.org/10.2307/2965551</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="inverse-multilevel-2d-imra2">
+<h2>Inverse Multilevel 2D <code class="docutils literal notranslate"><span class="pre">imra2</span></code><a class="headerlink" href="#inverse-multilevel-2d-imra2" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.imra2">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">imra2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mra_coeffs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.imra2" title="Permalink to this definition">#</a></dt>
+<dd><p>Inverse 2D multiresolution analysis via summation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mra_coeffs</strong><span class="classifier">list</span></dt><dd><p>Multiresolution analysis coefficients as returned by <cite>mra2</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rec</strong><span class="classifier">ndarray</span></dt><dd><p>The reconstructed signal.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pywt.mra2" title="pywt.mra2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mra2</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="re2ec00e5dc37-1"><span class="brackets">1</span></dt>
+<dd><p>Donald B. Percival and Harold O. Mofjeld. Analysis of Subtidal
+Coastal Sea Level Fluctuations Using Wavelets. Journal of the American
+Statistical Association Vol. 92, No. 439 (Sep., 1997), pp. 868-880.
+<a class="reference external" href="https://doi.org/10.2307/2965551">https://doi.org/10.2307/2965551</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="inverse-multilevel-n-dimensional-imran">
+<h2>Inverse Multilevel n-dimensional <code class="docutils literal notranslate"><span class="pre">imran</span></code><a class="headerlink" href="#inverse-multilevel-n-dimensional-imran" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pywt.imran">
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">imran</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mra_coeffs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.imran" title="Permalink to this definition">#</a></dt>
+<dd><p>Inverse nD multiresolution analysis via summation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mra_coeffs</strong><span class="classifier">list</span></dt><dd><p>Multiresolution analysis coefficients as returned by <cite>mra2</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>rec</strong><span class="classifier">ndarray</span></dt><dd><p>The reconstructed signal.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#pywt.mran" title="pywt.mran"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mran</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r9fe61bf2d093-1"><span class="brackets">1</span></dt>
+<dd><p>Donald B. Percival and Harold O. Mofjeld. Analysis of Subtidal
+Coastal Sea Level Fluctuations Using Wavelets. Journal of the American
+Statistical Association Vol. 92, No. 439 (Sep., 1997), pp. 868-880.
+<a class="reference external" href="https://doi.org/10.2307/2965551">https://doi.org/10.2307/2965551</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="iswt-inverse-stationary-wavelet-transform.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Inverse Stationary Wavelet Transform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="wavelet-packets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Wavelet Packets</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-1d-mra">Multilevel 1D <code class="docutils literal notranslate"><span class="pre">mra</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.mra"><code class="docutils literal notranslate"><span class="pre">mra()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-2d-mra2">Multilevel 2D <code class="docutils literal notranslate"><span class="pre">mra2</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.mra2"><code class="docutils literal notranslate"><span class="pre">mra2()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-n-dimensional-mran">Multilevel n-dimensional <code class="docutils literal notranslate"><span class="pre">mran</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.mran"><code class="docutils literal notranslate"><span class="pre">mran()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-multilevel-1d-imra">Inverse Multilevel 1D <code class="docutils literal notranslate"><span class="pre">imra</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.imra"><code class="docutils literal notranslate"><span class="pre">imra()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-multilevel-2d-imra2">Inverse Multilevel 2D <code class="docutils literal notranslate"><span class="pre">imra2</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.imra2"><code class="docutils literal notranslate"><span class="pre">imra2()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-multilevel-n-dimensional-imran">Inverse Multilevel n-dimensional <code class="docutils literal notranslate"><span class="pre">imran</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pywt.imran"><code class="docutils literal notranslate"><span class="pre">imran()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/PyWavelets/pywt/edit/main/doc/source/ref/mra.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2006-2024, The PyWavelets Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
