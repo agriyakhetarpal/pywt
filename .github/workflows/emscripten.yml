@@ -83,8 +83,15 @@ jobs:
           artifacts_path: dist/
           anaconda_nightly_upload_token: ${{ secrets.ANACONDA_ORG_UPLOAD_TOKEN }}
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel
+          path: dist/
+
   # build docs with sphinx and deploy to GitHub Pages
   build_docs:
+    needs: [build_wasm_emscripten]
     name: Build and deploy docs
     runs-on: ubuntu-latest
     steps:
@@ -102,7 +109,32 @@ jobs:
           python -m pip install -r util/readthedocs/requirements.txt
           pip install . -v
 
+      - name: Download PyWavelets Emscripten/Pyodide wheel
+        uses: actions/download-artifact@v4
+        with:
+          path: dist/
+          merge-multiple: true
+
+      - name: Download Pyodide distribution from GitHub Releases
+        run: |
+          curl -LJO https://github.com/pyodide/pyodide/releases/download/0.25.1/pyodide-0.25.1.tar.bz2
+          mkdir pywavelets_custom_pyodide_dist
+          tar -xjf pyodide-0.25.1.tar.bz2 -C pywavelets_custom_pyodide_dist
+
+          # Delete the PyWavelets package from the distribution
+          rm -rf pywavelets_custom_pyodide_dist/pyodide/PyWavelets-*.whl
+          rm -rf pywavelets_custom_pyodide_dist/pyodide/pywavelets-*.whl.metadata
+
+          # Copy the PyWavelets wheel artifact to the distribution
+          cp dist/*.whl pywavelets_custom_pyodide_dist/pyodide/
+
+          # Move the Pyodide distribution folder and its contents
+          mv pywavelets_custom_pyodide_dist doc/source/
+
       - name: Build docs
+        # env:
+        # Set URL to new local Pyodide distribution
+        # JUPYTERLITE_PYODIDE_URL: pyodide_dist
         run: |
           cd doc && make html && cd ..
 
