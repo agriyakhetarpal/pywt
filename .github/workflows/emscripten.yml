@@ -128,13 +128,15 @@ jobs:
           # Copy the PyWavelets wheel artifact to the distribution
           cp dist/*.whl pywavelets_custom_pyodide_dist/pyodide/
 
-          # Move the Pyodide distribution folder and its contents
-          mv pywavelets_custom_pyodide_dist doc/source/
+          # # Move the Pyodide distribution folder and its contents
+          # mv pywavelets_custom_pyodide_dist doc/source/
 
       - name: Build docs
         env:
           # Set URL to new local Pyodide distribution
-          JUPYTERLITE_PYODIDE_URL: "pywavelets_custom_pyodide_dist/pyodide/"
+          # Bug: not working with relative URLs/filepath, use absolute path for now
+          # Not working with files in doc/source/ directory either, so use from root
+          JUPYTERLITE_PYODIDE_URL: "$GITHUB_WORKSPACE/pywavelets_custom_pyodide_dist/pyodide"
         run: |
           sphinx-build -b html doc/source/ doc/build/
           echo "Contents of doc/source/:"
