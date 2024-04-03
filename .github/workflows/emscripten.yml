@@ -132,17 +132,21 @@ jobs:
           mv pywavelets_custom_pyodide_dist doc/source/
 
       - name: Build docs
-        # env:
-        # Set URL to new local Pyodide distribution
-        # JUPYTERLITE_PYODIDE_URL: pyodide_dist
+        env:
+          # Set URL to new local Pyodide distribution
+          JUPYTERLITE_PYODIDE_URL: "pywavelets_custom_pyodide_dist/pyodide/"
         run: |
-          cd doc && make html && cd ..
+          sphinx-build -b html doc/source/ doc/build/
+          echo "Contents of doc/source/:"
+          ls -R doc/source/
+          echo "Contents of doc/build/:"
+          ls -R doc/build/
 
       - name: Deploy docs
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: doc/build/html
+          publish_dir: doc/build/
           publish_branch: gh-pages
           user_name: "agriyakhetarpal"
           user_email: "74401230+agriyakhetarpal@users.noreply.github.com"
