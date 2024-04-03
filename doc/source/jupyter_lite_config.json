@@ -1,6 +1,6 @@
 // Jupyterlite configuration file
 {
   "Application": {
-    "log_level": 20
+    "log_level": 10
   }
 }
