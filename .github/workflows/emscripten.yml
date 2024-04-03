@@ -136,7 +136,7 @@ jobs:
           # Set URL to new local Pyodide distribution
           # Bug: not working with relative URLs/filepath, use absolute path for now
           # Not working with files in doc/source/ directory either, so use from root
-          JUPYTERLITE_PYODIDE_URL: "$GITHUB_WORKSPACE/pywavelets_custom_pyodide_dist/pyodide"
+          JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/pywavelets_custom_pyodide_dist/pyodide
         run: |
           sphinx-build -b html doc/source/ doc/build/
           echo "Contents of doc/source/:"
