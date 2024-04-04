@@ -303,7 +303,7 @@
         "pipliteUrls": [
           "./extensions/@jupyterlite/pyodide-kernel-extension/static/pypi/all.json?sha256=347ef7784cbabf42964174d3d5cca9b4a4fa94ee59bab5975edc948f4c7ea7cf"
         ],
-        "pyodideUrl": "notebooks/pywavelets_custom_pyodide_dist/pyodide/pyodide.js"
+        "pyodideUrl": "./static/pyodide/pyodide.js"
       }
     }
   },
