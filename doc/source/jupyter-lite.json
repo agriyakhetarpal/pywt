@@ -3,7 +3,7 @@
   "jupyter-config-data": {
     "litePluginSettings": {
       "@jupyterlite/pyodide-kernel-extension:kernel": {
-        "pyodideUrl": "pywavelets_custom_pyodide_dist/pyodide/pyodide.js",
+        "pyodideUrl": "notebooks/pywavelets_custom_pyodide_dist/pyodide/pyodide.js",
         "disablePyPIFallback": true
       }
     }

@@ -141,7 +141,8 @@ jobs:
           find doc/ -name ".jupyterlite.doit.db" -type f -delete
           sphinx-build -b html doc/source/ doc/build/
           # Move Pyodide distribution folder + contents to the built docs where jupyter-lite.json expects it
-          mv pywavelets_custom_pyodide_dist doc/build/lite/
+          mkdir -p doc/build/lite/notebooks/
+          mv pywavelets_custom_pyodide_dist doc/build/lite/notebooks/
 
       - name: Deploy docs
         uses: peaceiris/actions-gh-pages@v3.9.3
