@@ -119,30 +119,37 @@ jobs:
         run: |
           curl -LJO https://github.com/pyodide/pyodide/releases/download/0.25.1/pyodide-0.25.1.tar.bz2
           # upstream bug: .cache/pyodide/pyodide/pyodide referenced instead of custom path .cache/pyodide/custom_pyodide/pyodide?
-          mkdir pywavelets_custom_pyodide_dist
-          tar -xjf pyodide-0.25.1.tar.bz2 -C pywavelets_custom_pyodide_dist
+          tar -xjf pyodide-0.25.1.tar.bz2
 
           # Delete the PyWavelets package from the distribution
-          rm -rf pywavelets_custom_pyodide_dist/pyodide/PyWavelets-*.whl
-          rm -rf pywavelets_custom_pyodide_dist/pyodide/pywavelets-*.whl.metadata
+          rm -rf pyodide/PyWavelets-*.whl
+          rm -rf pyodide/PyWavelets-*.whl.metadata
 
           # Copy the PyWavelets wheel artifact to the distribution
-          cp dist/*.whl pywavelets_custom_pyodide_dist/pyodide/
+          cp dist/*.whl pyodide/
+
+          # Compress pyodide/ folder into archive again
+          tar -cjf pyodide-0.25.1.tar.bz2 pyodide/
 
       - name: Build docs
-        # env:
-        # Set URL to new local Pyodide distribution
-        # Bug: not working with relative URLs/filepath, use absolute path for now
-        # Not working with files in doc/source/ directory either, so use from root
-        # JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/pywavelets_custom_pyodide_dist/pyodide/
-        # still doesn't work
+        env:
+          # Set URL to new local Pyodide distribution
+          # Bug: not working with relative URLs/filepath, use absolute path for now
+          # Try to point to archive, let it extract and use the extracted folder by itself
+          JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/pyodide-0.25.1.tar.bz2
         run: |
           # remove any cached .jupyterlite.doit.db files in doc and any subdirectories in doc/
           find doc/ -name ".jupyterlite.doit.db" -type f -delete
+
+          # Move pyodide tarball
+          mv pyodide-0.25.1.tar.bz2 doc/source/
+
+          # Build the docs
           sphinx-build -b html doc/source/ doc/build/
+
           # Move Pyodide distribution folder + contents to the built docs where jupyter-lite.json expects it
-          mkdir -p doc/build/lite/notebooks/
-          mv pywavelets_custom_pyodide_dist doc/build/lite/notebooks/
+          # mkdir -p doc/build/lite/notebooks/
+          # mv pywavelets_custom_pyodide_dist doc/build/lite/notebooks/
 
       - name: Deploy docs
         uses: peaceiris/actions-gh-pages@v3.9.3
@@ -161,11 +168,11 @@ jobs:
           echo "Contents of doc/build/:"
           ls -R doc/build/
 
-      - name: Debug jupyter-lite.json
-        run: |
-          echo "Contents of doc/source/jupyter-lite.json:"
-          cat doc/source/jupyter-lite.json
-          echo "Contents of doc/build/lite/jupyter-lite.json:"
-          cat doc/build/html/lite/jupyter-lite.json
-          echo "Contents of doc/build/lite/pywavelets_custom_pyodide_dist/pyodide/:"
-          ls -R doc/build/lite/pywavelets_custom_pyodide_dist/pyodide/
+      # - name: Debug jupyter-lite.json
+      #   run: |
+      #     echo "Contents of doc/source/jupyter-lite.json:"
+      #     cat doc/source/jupyter-lite.json
+      #     echo "Contents of doc/build/lite/jupyter-lite.json:"
+      #     cat doc/build/html/lite/jupyter-lite.json
+      #     echo "Contents of doc/build/lite/pywavelets_custom_pyodide_dist/pyodide/:"
+      #     ls -R doc/build/lite/pywavelets_custom_pyodide_dist/pyodide/
