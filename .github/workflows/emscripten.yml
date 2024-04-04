@@ -137,10 +137,20 @@ jobs:
         # JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/pywavelets_custom_pyodide_dist/pyodide/
         # still doesn't work
         run: |
-          # sphinx-build -b html doc/source/ doc/build/ does not work for some reason, but make html does
-          cd doc && make html && cd ..
+          # remove any cached .jupyterlite.doit.db files in doc and any subdirectories in doc/
+          find doc/ -name ".jupyterlite.doit.db" -type f -delete
+          sphinx-build -b html doc/source/ doc/build/
           # Move Pyodide distribution folder + contents to the built docs where jupyter-lite.json expects it
           mv pywavelets_custom_pyodide_dist doc/build/lite/
+
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: doc/build/
+          publish_branch: gh-pages
+          user_name: "agriyakhetarpal"
+          user_email: "74401230+agriyakhetarpal@users.noreply.github.com"
 
       - name: Debug docs
         run: |
@@ -154,15 +164,6 @@ jobs:
           echo "Contents of doc/source/jupyter-lite.json:"
           cat doc/source/jupyter-lite.json
           echo "Contents of doc/build/lite/jupyter-lite.json:"
-          cat doc/build/lite/jupyter-lite.json
+          cat doc/build/html/lite/jupyter-lite.json
           echo "Contents of doc/build/lite/pywavelets_custom_pyodide_dist/pyodide/:"
           ls -R doc/build/lite/pywavelets_custom_pyodide_dist/pyodide/
-
-      - name: Deploy docs
-        uses: peaceiris/actions-gh-pages@v3.9.3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: doc/build/
-          publish_branch: gh-pages
-          user_name: "agriyakhetarpal"
-          user_email: "74401230+agriyakhetarpal@users.noreply.github.com"
