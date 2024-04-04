@@ -134,9 +134,10 @@ jobs:
       - name: Build docs
         env:
           # Set URL to new local Pyodide distribution
-          # Bug: not working with relative URLs/filepath, use absolute path for now
+          # JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/doc/source/pyodide-0.25.1.tar.bz2
           # Try to point to archive, let it extract and use the extracted folder by itself
-          JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/pyodide-0.25.1.tar.bz2
+          # also, use relative path
+          JUPYTERLITE_PYODIDE_URL: pyodide-0.25.1.tar.bz2
         run: |
           # remove any cached .jupyterlite.doit.db files in doc and any subdirectories in doc/
           find doc/ -name ".jupyterlite.doit.db" -type f -delete
