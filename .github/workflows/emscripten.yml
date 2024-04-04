@@ -125,6 +125,12 @@ jobs:
           rm -rf pyodide/PyWavelets-*.whl
           rm -rf pyodide/PyWavelets-*.whl.metadata
 
+          # Download a missing wheel to debug
+          curl -LJO https://files.pythonhosted.org/packages/e6/75/49e5bfe642f71f272236b5b2d2691cf915a7283cc0ceda56357b61daa538/comm-0.2.2-py3-none-any.whl
+
+          # Move the downloaded wheel to the distribution
+          mv comm-0.2.2-py3-none-any.whl pyodide/
+
           # Copy the PyWavelets wheel artifact to the distribution
           cp dist/*.whl pyodide/
 
