@@ -151,6 +151,7 @@ jobs:
           publish_dir: doc/build/
           publish_branch: gh-pages
           user_name: "agriyakhetarpal"
+          keep_files: true
           user_email: "74401230+agriyakhetarpal@users.noreply.github.com"
 
       - name: Debug docs
