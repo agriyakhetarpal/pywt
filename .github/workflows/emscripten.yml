@@ -115,41 +115,37 @@ jobs:
           path: dist/
           merge-multiple: true
 
-      - name: Download Pyodide distribution from GitHub Releases
-        run: |
-          curl -LJO https://github.com/pyodide/pyodide/releases/download/0.25.1/pyodide-0.25.1.tar.bz2
-          # upstream bug: .cache/pyodide/pyodide/pyodide referenced instead of custom path .cache/pyodide/custom_pyodide/pyodide?
-          tar -xjf pyodide-0.25.1.tar.bz2
+      # - name: Download Pyodide distribution from GitHub Releases
+      #   run: |
+      #     curl -LJO https://github.com/pyodide/pyodide/releases/download/0.25.1/pyodide-0.25.1.tar.bz2
+      #     # upstream bug: .cache/pyodide/pyodide/pyodide referenced instead of custom path .cache/pyodide/custom_pyodide/pyodide?
+      #     tar -xjf pyodide-0.25.1.tar.bz2
 
-          # Delete the PyWavelets package from the distribution
-          rm -rf pyodide/PyWavelets-*.whl
-          rm -rf pyodide/PyWavelets-*.whl.metadata
+      #     # Delete the PyWavelets package from the distribution
+      #     rm -rf pyodide/PyWavelets-*.whl
+      #     rm -rf pyodide/PyWavelets-*.whl.metadata
 
-          # Download a missing wheel to debug
-          curl -LJO https://files.pythonhosted.org/packages/e6/75/49e5bfe642f71f272236b5b2d2691cf915a7283cc0ceda56357b61daa538/comm-0.2.2-py3-none-any.whl
+      #     # Download a missing wheel to debug
+      #     curl -LJO https://files.pythonhosted.org/packages/e6/75/49e5bfe642f71f272236b5b2d2691cf915a7283cc0ceda56357b61daa538/comm-0.2.2-py3-none-any.whl
 
-          # Move the downloaded wheel to the distribution
-          mv comm-0.2.2-py3-none-any.whl pyodide/
+      #     # Move the downloaded wheel to the distribution
+      #     mv comm-0.2.2-py3-none-any.whl pyodide/
 
-          # Copy the PyWavelets wheel artifact to the distribution
-          cp dist/*.whl pyodide/
+      #     # Copy the PyWavelets wheel artifact to the distribution
+      #     cp dist/*.whl pyodide/
 
-          # Compress pyodide/ folder into archive again
-          tar -cjf pyodide-0.25.1.tar.bz2 pyodide/
+      #     # Compress pyodide/ folder into archive again
+      #     tar -cjf pyodide-0.25.1.tar.bz2 pyodide/
 
       - name: Build docs
-        env:
-          # Set URL to new local Pyodide distribution
-          # JUPYTERLITE_PYODIDE_URL: ${{ github.workspace }}/doc/source/pyodide-0.25.1.tar.bz2
-          # Try to point to archive, let it extract and use the extracted folder by itself
-          # also, use relative path
-          JUPYTERLITE_PYODIDE_URL: pyodide-0.25.1.tar.bz2
         run: |
           # remove any cached .jupyterlite.doit.db files in doc and any subdirectories in doc/
           find doc/ -name ".jupyterlite.doit.db" -type f -delete
 
-          # Move pyodide tarball
-          mv pyodide-0.25.1.tar.bz2 doc/source/
+          # Copy the PyWavelets wheel from dist/ to doc/source/pypi/
+          # NOTE: this is done before build because the wheel is processed at build time
+          mkdir -p doc/source/pypi/
+          cp dist/*.whl doc/source/pypi/
 
           # Build the docs
           sphinx-build -b html doc/source/ doc/build/
