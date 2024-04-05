@@ -1,0 +1,28 @@
+{
+  "pywavelets": {
+    "releases": {
+      "1.7.0.dev0": [
+        {
+          "comment_text": "",
+          "digests": {
+            "md5": "cdc6909d00d47ba352ad1ae93e40c142",
+            "sha256": "cc01480b27f26cfc751da294cfe223819a9f88e0565ddce708fbdc7b8aff1e25"
+          },
+          "downloads": -1,
+          "filename": "pywavelets-1.7.0.dev0-cp311-cp311-emscripten_3_1_46_wasm32.whl",
+          "has_sig": false,
+          "md5_digest": "cdc6909d00d47ba352ad1ae93e40c142",
+          "packagetype": "bdist_wheel",
+          "python_version": "py3",
+          "requires_python": ">=3.10",
+          "size": 4237680,
+          "upload_time": "2024-04-05T10:49:25.501082Z",
+          "upload_time_iso_8601": "2024-04-05T10:49:25.501082Z",
+          "url": "./pywavelets-1.7.0.dev0-cp311-cp311-emscripten_3_1_46_wasm32.whl",
+          "yanked": false,
+          "yanked_reason": null
+        }
+      ]
+    }
+  }
+}
