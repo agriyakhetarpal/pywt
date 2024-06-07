@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" data-theme="light">
+<html lang="en" data-content_root="../" data-theme="light">
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>nD Forward and Inverse Discrete Wavelet Transform &#8212; PyWavelets Documentation</title>
   
@@ -19,55 +18,53 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css?v=ca70e7f1" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css?v=d3e08fae" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/jupyterlite_sphinx.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/documentation_options.js?v=cd9de7ed"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/jupyterlite_sphinx.js?v=d6bdf5f8"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ref/nd-dwt-and-idwt';</script>
     <link rel="search" type="application/opensearchdescription+xml"
           title="Search within PyWavelets Documentation"
           href="../_static/opensearch.xml"/>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Handling DWT Coefficients" href="dwt-coefficient-handling.html" />
     <link rel="prev" title="2D Forward and Inverse Discrete Wavelet Transform" href="2d-dwt-and-idwt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Apr 05, 2024"/>
+    <meta name="docbuild:last-update" content="Jun 07, 2024"/>
   </head>
   
   
@@ -75,27 +72,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -117,12 +110,17 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
@@ -152,52 +150,52 @@
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../install.html">
-                        Installing
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installing
+  </a>
+</li>
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../regression/index.html">
-                        Usage examples
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../contributing.html">
-                        Contributing
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../dev/index.html">
-                        Development guide
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../regression/index.html">
+    Usage examples
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../dev/index.html">
+    Development guide
+  </a>
+</li>
+
+            <li class="nav-item dropdown pst-header-nav-item">
                 <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
-                        Release Notes
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+    Release Notes
+  </a>
+</li>
+
                 </ul>
             </li>
             
@@ -292,9 +290,9 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
@@ -315,61 +313,56 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
+          
+          
+            <div class="navbar-item">
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../install.html">
-                        Installing
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installing
+  </a>
+</li>
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../regression/index.html">
-                        Usage examples
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../contributing.html">
-                        Contributing
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../dev/index.html">
-                        Development guide
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
-                    More
-                </button>
-                <ul id="pst-nav-more-links-2" class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
-                        Release Notes
-                      </a>
-                    </li>
-                
-                </ul>
-            </li>
-            
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../regression/index.html">
+    Usage examples
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../dev/index.html">
+    Development guide
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../releasenotes.html">
+    Release Notes
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -478,13 +471,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -493,7 +486,7 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -522,26 +515,23 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="nd-forward-and-inverse-discrete-wavelet-transform">
-<span id="ref-dwtn"></span><h1>nD Forward and Inverse Discrete Wavelet Transform<a class="headerlink" href="#nd-forward-and-inverse-discrete-wavelet-transform" title="Permalink to this heading">#</a></h1>
-<table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="ref-dwtn"></span><h1>nD Forward and Inverse Discrete Wavelet Transform<a class="headerlink" href="#nd-forward-and-inverse-discrete-wavelet-transform" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">_multilevel</span></code></p></td>
 <td><p>Multilevel 1D and 2D Discrete Wavelet Transform and Inverse Discrete Wavelet Transform.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 <section id="single-level-dwtn">
-<h2>Single level - <code class="docutils literal notranslate"><span class="pre">dwtn</span></code><a class="headerlink" href="#single-level-dwtn" title="Permalink to this heading">#</a></h2>
+<h2>Single level - <code class="docutils literal notranslate"><span class="pre">dwtn</span></code><a class="headerlink" href="#single-level-dwtn" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.dwtn">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">dwtn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.dwtn" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">dwtn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.dwtn" title="Link to this definition">#</a></dt>
 <dd><p>Single-level n-dimensional Discrete Wavelet Transform.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>data</strong><span class="classifier">array_like</span></dt><dd><p>n-dimensional array with input data.</p>
 </dd>
@@ -563,7 +553,7 @@ decomposition.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt><strong>coeffs</strong><span class="classifier">dict</span></dt><dd><p>Results are arranged in a dictionary, where key specifies
 the transform type on each dimension and value is a n-dimensional
@@ -586,13 +576,13 @@ dictionary keys map to the specified <code class="docutils literal notranslate">
 
 </section>
 <section id="single-level-idwtn">
-<h2>Single level - <code class="docutils literal notranslate"><span class="pre">idwtn</span></code><a class="headerlink" href="#single-level-idwtn" title="Permalink to this heading">#</a></h2>
+<h2>Single level - <code class="docutils literal notranslate"><span class="pre">idwtn</span></code><a class="headerlink" href="#single-level-idwtn" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.idwtn">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">idwtn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.idwtn" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">idwtn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.idwtn" title="Link to this definition">#</a></dt>
 <dd><p>Single-level n-dimensional Inverse Discrete Wavelet Transform.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>coeffs: dict</strong></dt><dd><p>Dictionary as in output of <code class="docutils literal notranslate"><span class="pre">dwtn</span></code>. Missing or <code class="docutils literal notranslate"><span class="pre">None</span></code> items
 will be treated as zeros.</p>
@@ -612,7 +602,7 @@ the same order as they were provided to <code class="docutils literal notranslat
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>data: ndarray</dt><dd><p>Original signal reconstructed from input data.</p>
 </dd>
@@ -623,13 +613,13 @@ the same order as they were provided to <code class="docutils literal notranslat
 
 </section>
 <section id="multilevel-decomposition-wavedecn">
-<h2>Multilevel decomposition - <code class="docutils literal notranslate"><span class="pre">wavedecn</span></code><a class="headerlink" href="#multilevel-decomposition-wavedecn" title="Permalink to this heading">#</a></h2>
+<h2>Multilevel decomposition - <code class="docutils literal notranslate"><span class="pre">wavedecn</span></code><a class="headerlink" href="#multilevel-decomposition-wavedecn" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.wavedecn">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">wavedecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.wavedecn" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">wavedecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.wavedecn" title="Link to this definition">#</a></dt>
 <dd><p>Multilevel nD Discrete Wavelet Transform.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data</strong><span class="classifier">ndarray</span></dt><dd><p>nD input data</p>
 </dd>
@@ -648,7 +638,7 @@ default is None, which means transform all axes
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
 <dt><strong>[cAn, {details_level_n}, … {details_level_1}]</strong><span class="classifier">list</span></dt><dd><p>Coefficients list.  Coefficients are listed in descending order of
 decomposition level.  <code class="docutils literal notranslate"><span class="pre">cAn</span></code> are the approximation coefficients at
@@ -666,8 +656,8 @@ keys in each <code class="docutils literal notranslate"><span class="pre">detail
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="try_examples_outer_container docutils container" id="a792f87a-c256-41d8-9717-ec7bfa3aef45">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('a792f87a-c256-41d8-9717-ec7bfa3aef45','6f097743-ef75-4760-92a7-6ec4e4236cc8','b709dece-68e0-4055-ae44-78b1ac46f7c9','../lite/tree/../notebooks/?path=277e1c58_5dd1_49c4_b6be_63176adc3f6a.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="2db699b9-74c2-4e9d-adc2-ea6bd22ae94b">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('2db699b9-74c2-4e9d-adc2-ea6bd22ae94b','9dcca6fd-eadc-4469-a0b0-72a655730e87','0bf86be4-9a5e-4a55-9693-81942fa5adf1','../lite/tree/../notebooks/?path=49a02a14_ae3d_4a1a_9f0c_10ae072f2cee.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pywt</span> <span class="kn">import</span> <span class="n">wavedecn</span><span class="p">,</span> <span class="n">waverecn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">wavedecn</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="s1">&#39;db1&#39;</span><span class="p">)</span>
@@ -695,14 +685,14 @@ keys in each <code class="docutils literal notranslate"><span class="pre">detail
 </div>
 </div>
 </div>
-<div id="b709dece-68e0-4055-ae44-78b1ac46f7c9" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('a792f87a-c256-41d8-9717-ec7bfa3aef45','b709dece-68e0-4055-ae44-78b1ac46f7c9')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('a792f87a-c256-41d8-9717-ec7bfa3aef45','b709dece-68e0-4055-ae44-78b1ac46f7c9')">Open In Tab</button></div><div id="6f097743-ef75-4760-92a7-6ec4e4236cc8" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+<div id="0bf86be4-9a5e-4a55-9693-81942fa5adf1" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('2db699b9-74c2-4e9d-adc2-ea6bd22ae94b','0bf86be4-9a5e-4a55-9693-81942fa5adf1')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('2db699b9-74c2-4e9d-adc2-ea6bd22ae94b','0bf86be4-9a5e-4a55-9693-81942fa5adf1')">Open In Tab</button></div><div id="9dcca6fd-eadc-4469-a0b0-72a655730e87" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
 
 </section>
 <section id="multilevel-reconstruction-waverecn">
-<h2>Multilevel reconstruction - <code class="docutils literal notranslate"><span class="pre">waverecn</span></code><a class="headerlink" href="#multilevel-reconstruction-waverecn" title="Permalink to this heading">#</a></h2>
+<h2>Multilevel reconstruction - <code class="docutils literal notranslate"><span class="pre">waverecn</span></code><a class="headerlink" href="#multilevel-reconstruction-waverecn" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.waverecn">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">waverecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.waverecn" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">waverecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.waverecn" title="Link to this definition">#</a></dt>
 <dd><p>Multilevel nD Inverse Discrete Wavelet Transform.</p>
 <dl class="simple">
 <dt>coeffs<span class="classifier">array_like</span></dt><dd><p>Coefficients list [cAn, {details_level_n}, … {details_level_1}]</p>
@@ -717,7 +707,7 @@ also be a tuple containing a mode to apply along each axis in <code class="docut
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>nD array of reconstructed data.</dt><dd></dd>
 </dl>
@@ -733,8 +723,8 @@ list or dictionary entries or setting them to None is not supported.</p>
 </pre></div>
 </div>
 <p class="rubric">Examples</p>
-<div class="try_examples_outer_container docutils container" id="863b0c65-f65b-43e0-97fc-bf54e9234cae">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('863b0c65-f65b-43e0-97fc-bf54e9234cae','86c60b4e-32c1-49f7-87ff-5e32215df1b2','103f60ed-3a98-413a-9e96-f75a375f730b','../lite/tree/../notebooks/?path=e7234ae0_a9fa_4aa8_b6d3_197a6ff4c4f7.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="a73fafbf-6efd-474f-bf58-33ada5e7b4ab">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('a73fafbf-6efd-474f-bf58-33ada5e7b4ab','76463f04-e797-4f81-be36-ac331196fe22','3cc891fb-38c9-42c0-b7a5-a124eb859709','../lite/tree/../notebooks/?path=5a51bfaa_3b17_4c32_965a_4ebe0fd436d9.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pywt</span> <span class="kn">import</span> <span class="n">wavedecn</span><span class="p">,</span> <span class="n">waverecn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">wavedecn</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="s1">&#39;db1&#39;</span><span class="p">)</span>
@@ -762,14 +752,14 @@ list or dictionary entries or setting them to None is not supported.</p>
 </div>
 </div>
 </div>
-<div id="103f60ed-3a98-413a-9e96-f75a375f730b" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('863b0c65-f65b-43e0-97fc-bf54e9234cae','103f60ed-3a98-413a-9e96-f75a375f730b')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('863b0c65-f65b-43e0-97fc-bf54e9234cae','103f60ed-3a98-413a-9e96-f75a375f730b')">Open In Tab</button></div><div id="86c60b4e-32c1-49f7-87ff-5e32215df1b2" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+<div id="3cc891fb-38c9-42c0-b7a5-a124eb859709" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('a73fafbf-6efd-474f-bf58-33ada5e7b4ab','3cc891fb-38c9-42c0-b7a5-a124eb859709')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('a73fafbf-6efd-474f-bf58-33ada5e7b4ab','3cc891fb-38c9-42c0-b7a5-a124eb859709')">Open In Tab</button></div><div id="76463f04-e797-4f81-be36-ac331196fe22" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
 
 </section>
 <section id="multilevel-fully-separable-decomposition-fswavedecn">
-<h2>Multilevel fully separable decomposition - <code class="docutils literal notranslate"><span class="pre">fswavedecn</span></code><a class="headerlink" href="#multilevel-fully-separable-decomposition-fswavedecn" title="Permalink to this heading">#</a></h2>
+<h2>Multilevel fully separable decomposition - <code class="docutils literal notranslate"><span class="pre">fswavedecn</span></code><a class="headerlink" href="#multilevel-fully-separable-decomposition-fswavedecn" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.fswavedecn">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">fswavedecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.fswavedecn" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">fswavedecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.fswavedecn" title="Link to this definition">#</a></dt>
 <dd><p>Fully Separable Wavelet Decomposition.</p>
 <p>This is a variant of the multilevel discrete wavelet transform where all
 levels of decomposition are performed along a single axis prior to moving
@@ -777,7 +767,7 @@ onto the next axis.  Unlike in <code class="docutils literal notranslate"><span 
 decomposition are not required to be the same along each axis which can be
 a benefit for anisotropic data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>data: array_like</strong></dt><dd><p>Input data</p>
 </dd>
@@ -797,7 +787,7 @@ default is to transform along all axes.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fswavedecn_result</strong><span class="classifier">FswavedecnResult object</span></dt><dd><p>Contains the wavelet coefficients, slice objects to allow obtaining
 the coefficients per detail or approximation level, and more.
@@ -822,32 +812,37 @@ data with anisotropic smoothness.</p>
 least as well as the DWT for image compression.  Computation time is a
 factor 2 larger than that for the DWT.</p>
 <p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="r64df664ad9bd-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>PH Westerink. Subband Coding of Images. Ph.D. dissertation, Dept.
+<div role="list" class="citation-list">
+<div class="citation" id="r64df664ad9bd-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>PH Westerink. Subband Coding of Images. Ph.D. dissertation, Dept.
 Elect. Eng., Inf. Theory Group, Delft Univ. Technol., Delft, The
 Netherlands, 1989.  (see Section 2.3)
 <a class="reference external" href="http://resolver.tudelft.nl/uuid:a4d195c3-1f89-4d66-913d-db9af0969509">http://resolver.tudelft.nl/uuid:a4d195c3-1f89-4d66-913d-db9af0969509</a></p>
-</dd>
-<dt class="label" id="r64df664ad9bd-2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id5">2</a>)</span></dt>
-<dd><p>CP Rosiene and TQ Nguyen. Tensor-product wavelet vs. Mallat
+</div>
+<div class="citation" id="r64df664ad9bd-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p>CP Rosiene and TQ Nguyen. Tensor-product wavelet vs. Mallat
 decomposition: A comparative analysis, in Proc. IEEE Int. Symp.
 Circuits and Systems, Orlando, FL, Jun. 1999, pp. 431-434.</p>
-</dd>
-<dt class="label" id="r64df664ad9bd-3"><span class="brackets"><a class="fn-backref" href="#id2">3</a></span></dt>
-<dd><p>V Velisavljevic, B Beferull-Lozano, M Vetterli and PL Dragotti.
+</div>
+<div class="citation" id="r64df664ad9bd-3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">3</a><span class="fn-bracket">]</span></span>
+<p>V Velisavljevic, B Beferull-Lozano, M Vetterli and PL Dragotti.
 Directionlets: Anisotropic Multidirectional Representation With
 Separable Filtering. IEEE Transactions on Image Processing, Vol. 15,
 No. 7, July 2006.</p>
-</dd>
-<dt class="label" id="r64df664ad9bd-4"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
-<dd><p>RA DeVore, SV Konyagin and VN Temlyakov. “Hyperbolic wavelet
+</div>
+<div class="citation" id="r64df664ad9bd-4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>RA DeVore, SV Konyagin and VN Temlyakov. “Hyperbolic wavelet
 approximation,” Constr. Approx. 14 (1998), 1-26.</p>
-</dd>
-</dl>
+</div>
+</div>
 <p class="rubric">Examples</p>
-<div class="try_examples_outer_container docutils container" id="b443fb1a-4989-405f-9031-fabd17aa2ee6">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('b443fb1a-4989-405f-9031-fabd17aa2ee6','1626cbc5-91d1-47fc-98cc-afeab7852f86','78571b96-09da-44a2-aed5-5cf7356fef7e','../lite/tree/../notebooks/?path=c245091a_cd9c_4a72_86c7_7a398fd27a0f.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="ddcebeed-3c89-494d-9c87-c6d53480951d">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('ddcebeed-3c89-494d-9c87-c6d53480951d','8ad5b9a1-a976-4def-b64a-889d099c397e','72acd685-d2c8-4486-9beb-dc3039c8b0db','../lite/tree/../notebooks/?path=12d7bff4_a9ce_488b_8d01_143d86b29724.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pywt</span> <span class="kn">import</span> <span class="n">fswavedecn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fs_result</span> <span class="o">=</span> <span class="n">fswavedecn</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)),</span> <span class="s1">&#39;sym2&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">fs_result</span><span class="o">.</span><span class="n">detail_keys</span><span class="p">())</span>
@@ -858,23 +853,23 @@ approximation,” Constr. Approx. 14 (1998), 1-26.</p>
 </div>
 </div>
 </div>
-<div id="78571b96-09da-44a2-aed5-5cf7356fef7e" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('b443fb1a-4989-405f-9031-fabd17aa2ee6','78571b96-09da-44a2-aed5-5cf7356fef7e')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('b443fb1a-4989-405f-9031-fabd17aa2ee6','78571b96-09da-44a2-aed5-5cf7356fef7e')">Open In Tab</button></div><div id="1626cbc5-91d1-47fc-98cc-afeab7852f86" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+<div id="72acd685-d2c8-4486-9beb-dc3039c8b0db" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('ddcebeed-3c89-494d-9c87-c6d53480951d','72acd685-d2c8-4486-9beb-dc3039c8b0db')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('ddcebeed-3c89-494d-9c87-c6d53480951d','72acd685-d2c8-4486-9beb-dc3039c8b0db')">Open In Tab</button></div><div id="8ad5b9a1-a976-4def-b64a-889d099c397e" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
 
 </section>
 <section id="multilevel-fully-separable-reconstruction-fswaverecn">
-<h2>Multilevel fully separable reconstruction - <code class="docutils literal notranslate"><span class="pre">fswaverecn</span></code><a class="headerlink" href="#multilevel-fully-separable-reconstruction-fswaverecn" title="Permalink to this heading">#</a></h2>
+<h2>Multilevel fully separable reconstruction - <code class="docutils literal notranslate"><span class="pre">fswaverecn</span></code><a class="headerlink" href="#multilevel-fully-separable-reconstruction-fswaverecn" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.fswaverecn">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">fswaverecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fswavedecn_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.fswaverecn" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">fswaverecn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fswavedecn_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.fswaverecn" title="Link to this definition">#</a></dt>
 <dd><p>Fully Separable Inverse Wavelet Reconstruction.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fswavedecn_result</strong><span class="classifier">FswavedecnResult object</span></dt><dd><p>FswavedecnResult object from <code class="docutils literal notranslate"><span class="pre">fswavedecn</span></code>.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>reconstructed</strong><span class="classifier">ndarray</span></dt><dd><p>Array of reconstructed data.</p>
 </dd>
@@ -897,40 +892,45 @@ data with anisotropic smoothness.</p>
 least as well as the DWT for image compression. Computation time is a
 factor 2 larger than that for the DWT.</p>
 <p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="ra31994bc9c8f-1"><span class="brackets"><a class="fn-backref" href="#id10">1</a></span></dt>
-<dd><p>PH Westerink. Subband Coding of Images. Ph.D. dissertation, Dept.
+<div role="list" class="citation-list">
+<div class="citation" id="ra31994bc9c8f-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">1</a><span class="fn-bracket">]</span></span>
+<p>PH Westerink. Subband Coding of Images. Ph.D. dissertation, Dept.
 Elect. Eng., Inf. Theory Group, Delft Univ. Technol., Delft, The
 Netherlands, 1989.  (see Section 2.3)
 <a class="reference external" href="http://resolver.tudelft.nl/uuid:a4d195c3-1f89-4d66-913d-db9af0969509">http://resolver.tudelft.nl/uuid:a4d195c3-1f89-4d66-913d-db9af0969509</a></p>
-</dd>
-<dt class="label" id="ra31994bc9c8f-2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id12">1</a>,<a href="#id14">2</a>)</span></dt>
-<dd><p>CP Rosiene and TQ Nguyen. Tensor-product wavelet vs. Mallat
+</div>
+<div class="citation" id="ra31994bc9c8f-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id12">1</a>,<a role="doc-backlink" href="#id14">2</a>)</span>
+<p>CP Rosiene and TQ Nguyen. Tensor-product wavelet vs. Mallat
 decomposition: A comparative analysis, in Proc. IEEE Int. Symp.
 Circuits and Systems, Orlando, FL, Jun. 1999, pp. 431-434.</p>
-</dd>
-<dt class="label" id="ra31994bc9c8f-3"><span class="brackets"><a class="fn-backref" href="#id11">3</a></span></dt>
-<dd><p>V Velisavljevic, B Beferull-Lozano, M Vetterli and PL Dragotti.
+</div>
+<div class="citation" id="ra31994bc9c8f-3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">3</a><span class="fn-bracket">]</span></span>
+<p>V Velisavljevic, B Beferull-Lozano, M Vetterli and PL Dragotti.
 Directionlets: Anisotropic Multidirectional Representation With
 Separable Filtering. IEEE Transactions on Image Processing, Vol. 15,
 No. 7, July 2006.</p>
-</dd>
-<dt class="label" id="ra31994bc9c8f-4"><span class="brackets"><a class="fn-backref" href="#id13">4</a></span></dt>
-<dd><p>RA DeVore, SV Konyagin and VN Temlyakov. “Hyperbolic wavelet
+</div>
+<div class="citation" id="ra31994bc9c8f-4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">4</a><span class="fn-bracket">]</span></span>
+<p>RA DeVore, SV Konyagin and VN Temlyakov. “Hyperbolic wavelet
 approximation,” Constr. Approx. 14 (1998), 1-26.</p>
-</dd>
-</dl>
+</div>
+</div>
 </dd></dl>
 
 </section>
 <section id="multilevel-fully-separable-reconstruction-coeffs-fswavedecnresult">
-<h2>Multilevel fully separable reconstruction coeffs - <code class="docutils literal notranslate"><span class="pre">FswavedecnResult</span></code><a class="headerlink" href="#multilevel-fully-separable-reconstruction-coeffs-fswavedecnresult" title="Permalink to this heading">#</a></h2>
+<h2>Multilevel fully separable reconstruction coeffs - <code class="docutils literal notranslate"><span class="pre">FswavedecnResult</span></code><a class="headerlink" href="#multilevel-fully-separable-reconstruction-coeffs-fswavedecnresult" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pywt.FswavedecnResult">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">FswavedecnResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff_slices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode_enums</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.FswavedecnResult" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">FswavedecnResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeff_slices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode_enums</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.FswavedecnResult" title="Link to this definition">#</a></dt>
 <dd><p>Object representing fully separable wavelet transform coefficients.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>coeffs</strong><span class="classifier">ndarray</span></dt><dd><p>The coefficient array.</p>
 </dd>
@@ -947,7 +947,7 @@ coefficient array.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Attributes</dt>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">approx</span></code></dt><dd><p>ndarray: The approximation coefficients.</p>
 </dd>
@@ -973,17 +973,14 @@ coefficient array.</p>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detail_keys</span></code>()</p></td>
 <td><p>Return a list of all detail coefficient keys.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 </dd></dl>
 
 </section>
@@ -996,7 +993,7 @@ coefficient array.</p>
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1095,8 +1092,8 @@ coefficient array.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1116,7 +1113,7 @@ coefficient array.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>
@@ -1129,7 +1126,7 @@ coefficient array.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3.
 </p></div>
       
     </div>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" data-theme="light">
+<html lang="en" data-content_root="../" data-theme="light">
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Continuous Wavelet Transform (CWT) &#8212; PyWavelets Documentation</title>
   
@@ -19,56 +18,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css?v=ca70e7f1" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/pywavelets.css?v=d3e08fae" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/jupyterlite_sphinx.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/documentation_options.js?v=cd9de7ed"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/jupyterlite_sphinx.js?v=d6bdf5f8"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ref/cwt';</script>
     <link rel="search" type="application/opensearchdescription+xml"
           title="Search within PyWavelets Documentation"
           href="../_static/opensearch.xml"/>
-    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Thresholding functions" href="thresholding-functions.html" />
     <link rel="prev" title="Wavelet Packets" href="wavelet-packets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Apr 05, 2024"/>
+    <meta name="docbuild:last-update" content="Jun 07, 2024"/>
   </head>
   
   
@@ -76,27 +73,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -118,12 +111,17 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
@@ -153,52 +151,52 @@
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../install.html">
-                        Installing
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installing
+  </a>
+</li>
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../regression/index.html">
-                        Usage examples
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../contributing.html">
-                        Contributing
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../dev/index.html">
-                        Development guide
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../regression/index.html">
+    Usage examples
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../dev/index.html">
+    Development guide
+  </a>
+</li>
+
+            <li class="nav-item dropdown pst-header-nav-item">
                 <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
-                        Release Notes
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
+    Release Notes
+  </a>
+</li>
+
                 </ul>
             </li>
             
@@ -293,9 +291,9 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
@@ -316,61 +314,56 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
+          
+          
+            <div class="navbar-item">
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../install.html">
-                        Installing
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installing
+  </a>
+</li>
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="index.html">
-                        API Reference
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../regression/index.html">
-                        Usage examples
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../contributing.html">
-                        Contributing
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../dev/index.html">
-                        Development guide
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
-                    More
-                </button>
-                <ul id="pst-nav-more-links-2" class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../releasenotes.html">
-                        Release Notes
-                      </a>
-                    </li>
-                
-                </ul>
-            </li>
-            
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../regression/index.html">
+    Usage examples
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../dev/index.html">
+    Development guide
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../releasenotes.html">
+    Release Notes
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -479,13 +472,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -494,7 +487,7 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -523,12 +516,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="continuous-wavelet-transform-cwt">
-<span id="ref-cwt"></span><h1>Continuous Wavelet Transform (CWT)<a class="headerlink" href="#continuous-wavelet-transform-cwt" title="Permalink to this heading">#</a></h1>
+<span id="ref-cwt"></span><h1>Continuous Wavelet Transform (CWT)<a class="headerlink" href="#continuous-wavelet-transform-cwt" title="Link to this heading">#</a></h1>
 <p>This section focuses on the one-dimensional Continuous Wavelet Transform. It
 introduces the main function <code class="docutils literal notranslate"><span class="pre">cwt</span></code> alongside several helper function, and
 also gives an overview over the available wavelets for this transfom.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In simple terms, the Continuous Wavelet Transform is an analysis tool similar
 to the Fourier Transform, in that it takes a time-domain signal and returns
 the signal’s components in the frequency domain. However, in contrast to the
@@ -542,15 +535,15 @@ following well-known article is highly recommended:</p>
 <p><a class="reference external" href="https://paos.colorado.edu/research/wavelets/bams_79_01_0061.pdf">C. Torrence and G. Compo: “A Practical Guide to Wavelet Analysis”, Bulletin of the American Meteorological Society, vol. 79, no. 1, pp. 61-78, January 1998</a></p>
 </section>
 <section id="the-cwt-function">
-<h2>The <code class="docutils literal notranslate"><span class="pre">cwt</span></code> Function<a class="headerlink" href="#the-cwt-function" title="Permalink to this heading">#</a></h2>
+<h2>The <code class="docutils literal notranslate"><span class="pre">cwt</span></code> Function<a class="headerlink" href="#the-cwt-function" title="Link to this heading">#</a></h2>
 <p>This is the main function, which calculates the Continuous Wavelet Transform
 of a one-dimensional signal.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pywt.cwt">
-<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">cwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.cwt" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pywt.</span></span><span class="sig-name descname"><span class="pre">cwt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pywt.cwt" title="Link to this definition">#</a></dt>
 <dd><p>One dimensional Continuous Wavelet Transform.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>data</strong><span class="classifier">array_like</span></dt><dd><p>Input signal</p>
 </dd>
@@ -585,7 +578,7 @@ used.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>coefs</strong><span class="classifier">array_like</span></dt><dd><p>Continuous wavelet transform of the input signal for the given scales
 and wavelet. The first axis of <code class="docutils literal notranslate"><span class="pre">coefs</span></code> corresponds to the scales.
@@ -601,8 +594,8 @@ are in hertz. Otherwise, a sampling period of 1 is assumed.</p>
 <p>Size of coefficients arrays depends on the length of the input array and
 the length of given scales.</p>
 <p class="rubric">Examples</p>
-<div class="try_examples_outer_container docutils container" id="6a3204cd-ad7c-40c5-b3ab-4dc900f81cfa">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('6a3204cd-ad7c-40c5-b3ab-4dc900f81cfa','f1dfe3cb-b8f0-4099-8c6e-acb5ec4c8192','a1b59109-4064-49bc-b94f-40591f507e1b','../lite/tree/../notebooks/?path=cb051c3a_573b_4aee_95b9_c589f5c645ae.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="31d1f908-695d-4621-a774-76d84322639f">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('31d1f908-695d-4621-a774-76d84322639f','f46e1fb5-10f9-41f9-b36b-ea6b5a8cae24','3a9338a8-c757-4711-a415-71bdb6c286f0','../lite/tree/../notebooks/?path=0f3ddd7b_d024_41b2_addc_474dd3f23873.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -627,11 +620,11 @@ the length of given scales.</p>
 </div>
 </div>
 </div>
-<div id="a1b59109-4064-49bc-b94f-40591f507e1b" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('6a3204cd-ad7c-40c5-b3ab-4dc900f81cfa','a1b59109-4064-49bc-b94f-40591f507e1b')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('6a3204cd-ad7c-40c5-b3ab-4dc900f81cfa','a1b59109-4064-49bc-b94f-40591f507e1b')">Open In Tab</button></div><div id="f1dfe3cb-b8f0-4099-8c6e-acb5ec4c8192" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
+<div id="3a9338a8-c757-4711-a415-71bdb6c286f0" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('31d1f908-695d-4621-a774-76d84322639f','3a9338a8-c757-4711-a415-71bdb6c286f0')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('31d1f908-695d-4621-a774-76d84322639f','3a9338a8-c757-4711-a415-71bdb6c286f0')">Open In Tab</button></div><div id="f46e1fb5-10f9-41f9-b36b-ea6b5a8cae24" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script></dd></dl>
 
 </section>
 <section id="a-comprehensive-example-of-the-cwt">
-<h2>A comprehensive example of the CWT<a class="headerlink" href="#a-comprehensive-example-of-the-cwt" title="Permalink to this heading">#</a></h2>
+<h2>A comprehensive example of the CWT<a class="headerlink" href="#a-comprehensive-example-of-the-cwt" title="Link to this heading">#</a></h2>
 <p>Here is a simple end-to-end example of how to calculate the CWT of a simple
 signal, and how to plot it using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <p>First, we generate an artificial signal to be analyzed. We are
@@ -723,7 +716,7 @@ For more information, see <a class="reference internal" href="#choosing-scales">
 <p>Also note, that the raw output of <code class="docutils literal notranslate"><span class="pre">cwt</span></code> is complex if a complex wavelet is used.
 For visualization, it is therefore necessary to use the absolute value.</p>
 <section id="wavelet-bandwidth-and-center-frequencies">
-<h3>Wavelet bandwidth and center frequencies<a class="headerlink" href="#wavelet-bandwidth-and-center-frequencies" title="Permalink to this heading">#</a></h3>
+<h3>Wavelet bandwidth and center frequencies<a class="headerlink" href="#wavelet-bandwidth-and-center-frequencies" title="Link to this heading">#</a></h3>
 <p>This example shows how the Complex Morlet Wavelet can be configured for optimum
 results using the <code class="docutils literal notranslate"><span class="pre">center_frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">bandwidth_frequency</span></code> parameters,
 which can simply be appended to the wavelet’s string identifier <code class="docutils literal notranslate"><span class="pre">cmor</span></code> for
@@ -802,18 +795,18 @@ resolution or artifacts.</p>
 </section>
 </section>
 <section id="continuous-wavelet-families">
-<h2>Continuous Wavelet Families<a class="headerlink" href="#continuous-wavelet-families" title="Permalink to this heading">#</a></h2>
+<h2>Continuous Wavelet Families<a class="headerlink" href="#continuous-wavelet-families" title="Link to this heading">#</a></h2>
 <p>A variety of continuous wavelets have been implemented. A list of the available
 wavelet names compatible with <code class="docutils literal notranslate"><span class="pre">cwt</span></code> can be obtained by:</p>
-<div class="try_examples_outer_container docutils container" id="1e8c1f9b-b9f4-42bc-abf3-4ffc86083305">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('1e8c1f9b-b9f4-42bc-abf3-4ffc86083305','f4b28374-6ed6-471f-9195-0f634fef7fd5','69c6ebb6-d989-46a9-91a7-03a2e7f83b9e','../lite/tree/../notebooks/?path=9519f34e_f25b_4ae7_8555_ceebcc5f54a6.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="a113d61c-36a3-4060-b719-7dfd0ce362ff">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('a113d61c-36a3-4060-b719-7dfd0ce362ff','896f0e25-f4e0-423e-b590-6743c63cd573','8410005f-480b-489a-8410-78e75a35278a','../lite/tree/../notebooks/?path=f05b6a34_4f32_4c55_adb6_3a2f180626ec.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wavelist</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">wavelist</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div id="69c6ebb6-d989-46a9-91a7-03a2e7f83b9e" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('1e8c1f9b-b9f4-42bc-abf3-4ffc86083305','69c6ebb6-d989-46a9-91a7-03a2e7f83b9e')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('1e8c1f9b-b9f4-42bc-abf3-4ffc86083305','69c6ebb6-d989-46a9-91a7-03a2e7f83b9e')">Open In Tab</button></div><div id="f4b28374-6ed6-471f-9195-0f634fef7fd5" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>Here is an overview of all available wavelets for <code class="docutils literal notranslate"><span class="pre">cwt</span></code>. Note, that they can be
+<div id="8410005f-480b-489a-8410-78e75a35278a" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('a113d61c-36a3-4060-b719-7dfd0ce362ff','8410005f-480b-489a-8410-78e75a35278a')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('a113d61c-36a3-4060-b719-7dfd0ce362ff','8410005f-480b-489a-8410-78e75a35278a')">Open In Tab</button></div><div id="896f0e25-f4e0-423e-b590-6743c63cd573" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>Here is an overview of all available wavelets for <code class="docutils literal notranslate"><span class="pre">cwt</span></code>. Note, that they can be
 customized by passing parameters such as <code class="docutils literal notranslate"><span class="pre">center_frequency</span></code> and <code class="docutils literal notranslate"><span class="pre">bandwidth_frequency</span></code>
 (see <a class="reference internal" href="wavelets.html#continuouswavelet"><span class="std std-ref">ContinuousWavelet object</span></a> for details).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -850,7 +843,7 @@ customized by passing parameters such as <code class="docutils literal notransla
 <img alt="../_images/plot_wavelets.png" class="plot-directive" src="../_images/plot_wavelets.png" />
 </figure>
 <section id="mexican-hat-wavelet">
-<h3>Mexican Hat Wavelet<a class="headerlink" href="#mexican-hat-wavelet" title="Permalink to this heading">#</a></h3>
+<h3>Mexican Hat Wavelet<a class="headerlink" href="#mexican-hat-wavelet" title="Link to this heading">#</a></h3>
 <p>The mexican hat wavelet <code class="docutils literal notranslate"><span class="pre">&quot;mexh&quot;</span></code> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\psi(t) = \frac{2}{\sqrt{3} \sqrt[4]{\pi}} \exp^{-\frac{t^2}{2}}
@@ -859,13 +852,13 @@ customized by passing parameters such as <code class="docutils literal notransla
 unit energy.</p>
 </section>
 <section id="morlet-wavelet">
-<h3>Morlet Wavelet<a class="headerlink" href="#morlet-wavelet" title="Permalink to this heading">#</a></h3>
+<h3>Morlet Wavelet<a class="headerlink" href="#morlet-wavelet" title="Link to this heading">#</a></h3>
 <p>The Morlet wavelet <code class="docutils literal notranslate"><span class="pre">&quot;morl&quot;</span></code> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\psi(t) = \exp^{-\frac{t^2}{2}} \cos(5t)\]</div>
 </section>
 <section id="complex-morlet-wavelets">
-<h3>Complex Morlet Wavelets<a class="headerlink" href="#complex-morlet-wavelets" title="Permalink to this heading">#</a></h3>
+<h3>Complex Morlet Wavelets<a class="headerlink" href="#complex-morlet-wavelets" title="Link to this heading">#</a></h3>
 <p>The complex Morlet wavelet (<code class="docutils literal notranslate"><span class="pre">&quot;cmorB-C&quot;</span></code> with floating point values B, C) is
 given by:</p>
 <div class="math notranslate nohighlight">
@@ -874,7 +867,7 @@ given by:</p>
 <p>where <span class="math notranslate nohighlight">\(B\)</span> is the bandwidth and <span class="math notranslate nohighlight">\(C\)</span> is the center frequency.</p>
 </section>
 <section id="gaussian-derivative-wavelets">
-<h3>Gaussian Derivative Wavelets<a class="headerlink" href="#gaussian-derivative-wavelets" title="Permalink to this heading">#</a></h3>
+<h3>Gaussian Derivative Wavelets<a class="headerlink" href="#gaussian-derivative-wavelets" title="Link to this heading">#</a></h3>
 <p>The Gaussian wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;gausP&quot;</span></code> where P is an integer between 1 and and 8)
 correspond to the Pth order derivatives of the function:</p>
 <div class="math notranslate nohighlight">
@@ -882,7 +875,7 @@ correspond to the Pth order derivatives of the function:</p>
 <p>where <span class="math notranslate nohighlight">\(C\)</span> is an order-dependent normalization constant.</p>
 </section>
 <section id="complex-gaussian-derivative-wavelets">
-<h3>Complex Gaussian Derivative Wavelets<a class="headerlink" href="#complex-gaussian-derivative-wavelets" title="Permalink to this heading">#</a></h3>
+<h3>Complex Gaussian Derivative Wavelets<a class="headerlink" href="#complex-gaussian-derivative-wavelets" title="Link to this heading">#</a></h3>
 <p>The complex Gaussian wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;cgauP&quot;</span></code> where P is an integer between 1 and
 8) correspond to the Pth order derivatives of the function:</p>
 <div class="math notranslate nohighlight">
@@ -890,7 +883,7 @@ correspond to the Pth order derivatives of the function:</p>
 <p>where <span class="math notranslate nohighlight">\(C\)</span> is an order-dependent normalization constant.</p>
 </section>
 <section id="shannon-wavelets">
-<h3>Shannon Wavelets<a class="headerlink" href="#shannon-wavelets" title="Permalink to this heading">#</a></h3>
+<h3>Shannon Wavelets<a class="headerlink" href="#shannon-wavelets" title="Link to this heading">#</a></h3>
 <p>The Shannon wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;shanB-C&quot;</span></code> with floating point values B and C)
 correspond to the following wavelets:</p>
 <div class="math notranslate nohighlight">
@@ -898,7 +891,7 @@ correspond to the following wavelets:</p>
 <p>where <span class="math notranslate nohighlight">\(B\)</span> is the bandwidth and <span class="math notranslate nohighlight">\(C\)</span> is the center frequency.</p>
 </section>
 <section id="frequency-b-spline-wavelets">
-<h3>Frequency B-Spline Wavelets<a class="headerlink" href="#frequency-b-spline-wavelets" title="Permalink to this heading">#</a></h3>
+<h3>Frequency B-Spline Wavelets<a class="headerlink" href="#frequency-b-spline-wavelets" title="Link to this heading">#</a></h3>
 <p>The frequency B-spline wavelets (<code class="docutils literal notranslate"><span class="pre">&quot;fpspM-B-C&quot;</span></code> with integer M and floating
 point B, C) correspond to the following wavelets:</p>
 <div class="math notranslate nohighlight">
@@ -910,7 +903,7 @@ the center frequency.</p>
 </section>
 </section>
 <section id="choosing-the-scales-for-cwt">
-<span id="choosing-scales"></span><h2>Choosing the scales for <code class="docutils literal notranslate"><span class="pre">cwt</span></code><a class="headerlink" href="#choosing-the-scales-for-cwt" title="Permalink to this heading">#</a></h2>
+<span id="choosing-scales"></span><h2>Choosing the scales for <code class="docutils literal notranslate"><span class="pre">cwt</span></code><a class="headerlink" href="#choosing-the-scales-for-cwt" title="Link to this heading">#</a></h2>
 <p>For each of the wavelets described below, the implementation in PyWavelets
 evaluates the wavelet function for <span class="math notranslate nohighlight">\(t\)</span> over the range
 <code class="docutils literal notranslate"><span class="pre">[wavelet.lower_bound,</span> <span class="pre">wavelet.upper_bound]</span></code> (with default range
@@ -930,8 +923,8 @@ where dt is the sampling period. In other words, when analyzing a signal
 sampled at 100 Hz, a center frequency of 1.0 corresponds to ~100 Hz at
 <code class="docutils literal notranslate"><span class="pre">scale</span> <span class="pre">=</span> <span class="pre">1</span></code>. This is above the Nyquist rate of 50 Hz, so for this
 particular wavelet, one would analyze a signal using <code class="docutils literal notranslate"><span class="pre">scales</span> <span class="pre">&gt;=</span> <span class="pre">2</span></code>.</p>
-<div class="try_examples_outer_container docutils container" id="1122eb38-3a63-4dbe-aa3d-94abcc9c6a51">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('1122eb38-3a63-4dbe-aa3d-94abcc9c6a51','d2fada62-d7bf-4a48-be39-02ffaf872fa0','94fc0d7c-8340-4bc8-86b4-826d3a8ecf85','../lite/tree/../notebooks/?path=49ebacc8_4d8a_473e_b977_791e8fee1447.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="0dd9471c-a07b-4cdb-b66e-961d35205408">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('0dd9471c-a07b-4cdb-b66e-961d35205408','e9b10da4-b291-49bd-920d-8c66116f719f','de9edd00-585c-4e7d-b7a4-640a89b4338d','../lite/tree/../notebooks/?path=67ed53a2_704f_4872_8010_45ccfb2e02ab.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 100 Hz sampling</span>
@@ -942,7 +935,7 @@ particular wavelet, one would analyze a signal using <code class="docutils liter
 </div>
 </div>
 </div>
-<div id="94fc0d7c-8340-4bc8-86b4-826d3a8ecf85" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('1122eb38-3a63-4dbe-aa3d-94abcc9c6a51','94fc0d7c-8340-4bc8-86b4-826d3a8ecf85')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('1122eb38-3a63-4dbe-aa3d-94abcc9c6a51','94fc0d7c-8340-4bc8-86b4-826d3a8ecf85')">Open In Tab</button></div><div id="d2fada62-d7bf-4a48-be39-02ffaf872fa0" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>The CWT in PyWavelets is applied to discrete data by convolution with samples
+<div id="de9edd00-585c-4e7d-b7a4-640a89b4338d" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('0dd9471c-a07b-4cdb-b66e-961d35205408','de9edd00-585c-4e7d-b7a4-640a89b4338d')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('0dd9471c-a07b-4cdb-b66e-961d35205408','de9edd00-585c-4e7d-b7a4-640a89b4338d')">Open In Tab</button></div><div id="e9b10da4-b291-49bd-920d-8c66116f719f" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><p>The CWT in PyWavelets is applied to discrete data by convolution with samples
 of the integral of the wavelet. If <code class="docutils literal notranslate"><span class="pre">scale</span></code> is too low, this will result in
 a discrete filter that is inadequately sampled leading to aliasing as shown
 in the example below. Here the wavelet is <code class="docutils literal notranslate"><span class="pre">'cmor1.5-1.0'</span></code>. The left column of
@@ -952,15 +945,15 @@ filter.. For scales 1 and 2 it can be seen that aliasing due to violation of
 the Nyquist limit occurs.</p>
 </section>
 <section id="converting-frequency-to-scale-for-cwt">
-<span id="converting-frequency"></span><h2>Converting frequency to scale for <code class="docutils literal notranslate"><span class="pre">cwt</span></code><a class="headerlink" href="#converting-frequency-to-scale-for-cwt" title="Permalink to this heading">#</a></h2>
+<span id="converting-frequency"></span><h2>Converting frequency to scale for <code class="docutils literal notranslate"><span class="pre">cwt</span></code><a class="headerlink" href="#converting-frequency-to-scale-for-cwt" title="Link to this heading">#</a></h2>
 <p>To convert frequency to scale for use in the wavelet transform the function
 <code class="xref py py-func docutils literal notranslate"><span class="pre">pywt.frequency2scale()</span></code> can be used. This is the complement of the
 <a class="reference internal" href="other-functions.html#pywt.scale2frequency" title="pywt.scale2frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">pywt.scale2frequency()</span></code></a> function as seen in the previous section. Note that
 the input frequency in this function is normalized by 1/dt, or the sampling
 frequency fs. This function is useful for specifying the transform as a function
 of frequency directly.</p>
-<div class="try_examples_outer_container docutils container" id="c6b296bc-b763-48d5-b56c-66dc72a08e76">
-<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('c6b296bc-b763-48d5-b56c-66dc72a08e76','0339e343-2d9b-4e2d-b681-001a6c0b258c','37086b1f-1569-4e04-9570-bcda80850a32','../lite/tree/../notebooks/?path=b8078a30_af22_4057_9f80_26affe9ca14d.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
+<div class="try_examples_outer_container docutils container" id="744447bf-53d6-40cd-8502-d813d108edb4">
+<div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesShowIframe('744447bf-53d6-40cd-8502-d813d108edb4','125322e5-1def-49c7-8e10-e77644960478','75279413-a7f9-4722-afb5-787b39d0cc0c','../lite/tree/../notebooks/?path=0c1650c3_fa44_44d6_8817_be74571d7741.ipynb','None')">Try it in your browser!</button></div><div class="try_examples_content docutils container">
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pywt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 100 Hz sampling</span>
@@ -973,7 +966,7 @@ of frequency directly.</p>
 </div>
 </div>
 </div>
-<div id="37086b1f-1569-4e04-9570-bcda80850a32" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('c6b296bc-b763-48d5-b56c-66dc72a08e76','37086b1f-1569-4e04-9570-bcda80850a32')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('c6b296bc-b763-48d5-b56c-66dc72a08e76','37086b1f-1569-4e04-9570-bcda80850a32')">Open In Tab</button></div><div id="0339e343-2d9b-4e2d-b681-001a6c0b258c" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div id="75279413-a7f9-4722-afb5-787b39d0cc0c" class="try_examples_outer_iframe  hidden"><div class="try_examples_button_container"><button class="try_examples_button" onclick="window.tryExamplesHideIframe('744447bf-53d6-40cd-8502-d813d108edb4','75279413-a7f9-4722-afb5-787b39d0cc0c')">Go Back</button><button class="try_examples_button" onclick="window.openInNewTab('744447bf-53d6-40cd-8502-d813d108edb4','75279413-a7f9-4722-afb5-787b39d0cc0c')">Open In Tab</button></div><div id="125322e5-1def-49c7-8e10-e77644960478" class="jupyterlite_sphinx_iframe_container"></div></div><script>document.addEventListener("DOMContentLoaded", function() {window.loadTryExamplesConfig("../try_examples.json");});</script><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">pywt</span>
@@ -1050,7 +1043,7 @@ of frequency directly.</p>
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1142,8 +1135,8 @@ of frequency directly.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1163,7 +1156,7 @@ of frequency directly.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>
@@ -1176,7 +1169,7 @@ of frequency directly.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3.
 </p></div>
       
     </div>
