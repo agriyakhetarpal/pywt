@@ -31,13 +31,13 @@ jobs:
           name: wasm32_docs_wheel
           path: wheelhouse/*.whl
 
-      - name: Build docs
-        run: sphinx-build -b html doc/source docs/build/html
-
       - name: Copy wheel to built docs
         run: |
           mkdir -p docs/build/lite/pypi
           cp wheelhouse/*.whl docs/build/lite/pypi/
+
+      - name: Build docs
+        run: sphinx-build -b html doc/source docs/build/html
 
       - name: Upload docs
         uses: actions/upload-artifact@v4
