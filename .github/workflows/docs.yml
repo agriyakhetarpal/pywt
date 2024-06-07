@@ -33,22 +33,25 @@ jobs:
 
       - name: Copy wheel to built docs
         run: |
-          mkdir -p docs/build/lite/pypi
-          cp wheelhouse/*.whl docs/build/lite/pypi/
+          mkdir -p doc/build/lite/pypi
+          cp wheelhouse/*.whl doc/build/lite/pypi/
 
       - name: Build docs
-        run: sphinx-build -b html doc/source docs/build/html
+        run: sphinx-build -b html doc/source doc/build/html
+
+      - name: Sanity check docs
+        run: tree doc/build
 
       - name: Upload docs
         uses: actions/upload-artifact@v4
         with:
-          name: docs
-          path: docs/build/html
+          name: documentation
+          path: doc/build/html
 
       - name: Deploy docs
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/build/html
+          publish_dir: ./doc/build/html
           user_name: agriyakhetarpal
           user_email: "74401230+agriyakhetarpal@users.noreply.github.com"
