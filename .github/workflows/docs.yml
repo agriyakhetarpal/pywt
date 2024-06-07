@@ -1,0 +1,54 @@
+name: Deploy docs 📚 to GitHub Pages 📑
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.1"
+
+      - name: Install
+        run: |
+          python -m pip install .
+          python -m pip install -r util/readthedocs/requirements.txt
+
+      - name: Build Emscripten wheel
+        uses: pypa/cibuildwheel@main
+        env:
+          CIBW_PLATFORM: pyodide
+
+      - name: Upload wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm32_docs_wheel
+          path: wheelhouse/*.whl
+
+      - name: Build docs
+        run: sphinx-build -b html doc/source docs/build/html
+
+      - name: Copy wheel to built docs
+        run: |
+          mkdir -p docs/build/lite/pypi
+          cp wheelhouse/*.whl docs/build/lite/pypi/
+
+      - name: Upload docs
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs
+          path: docs/build/html
+
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build/html
+          user_name: agriyakhetarpal
+          user_email: "74401230+agriyakhetarpal@users.noreply.github.com"
